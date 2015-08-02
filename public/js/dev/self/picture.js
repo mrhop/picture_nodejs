@@ -208,7 +208,7 @@ module.exports = (function ($, window, undefined) {
                     document.getElementById("filename").value = "";
                     console.log(['xhr upload complete', e]);
                     $("#button_add").removeAttr("disabled");
-                    document.getElementById("pic-upload").reset();
+                    //document.getElementById("pic-upload").reset();
                     _this.fileDataFinal = null;
                     $.post(_this.urlNow, _this.getKeywords(), function (data) {
                         _this.setData(data);
@@ -223,7 +223,7 @@ module.exports = (function ($, window, undefined) {
                     document.getElementById("filename").value = "";
                     console.log(['xhr upload complete', e]);
                     $("#button_add").removeAttr("disabled");
-                    document.getElementById("pic-upload").reset();
+                    //document.getElementById("pic-upload").reset();
                     _this.fileDataFinal = null;
                     $.post(_this.urlNow, _this.getKeywords(), function (data) {
                         _this.setData(data);
