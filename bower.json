@@ -1,0 +1,22 @@
+{
+  "name": "picture",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mrhop/picture_nodejs",
+  "authors": [
+    "mrhop <233402923@qq.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "bootstrap": "~3.3.5",
+    "imagesloaded": "~3.1.8",
+    "jquery-colorbox": "~1.6.1"
+  }
+}
