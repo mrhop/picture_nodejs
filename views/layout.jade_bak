@@ -1,0 +1,23 @@
+doctype html
+html
+  head(lang="en")
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    title= "pictures"
+    link(rel="stylesheet" href="css/style.css")
+    link(rel="stylesheet" href="css/jquery-colorbox/colorbox.css")
+    link(rel="stylesheet" href="css/bootstrap-datepicker3.css")
+    script(type="text/javascript" src="js/dev/jquery.js")
+    script(type="text/javascript" src="js/dev/bootstrap.js")
+    script(type="text/javascript" src="js/dev/bootstrap-datepicker.js")
+    script(type="text/javascript" src="js/dev/bootstrap-datepicker.zh-CN.js")
+    script(type="text/javascript" src="js/dev/imagesloaded.pkgd.js")
+    script(type="text/javascript" src="js/dev/jquery.colorbox.js")
+    script(type="text/javascript" src="js/dev/jquery.cookie.js")
+    script(type="text/javascript" src="js/dev/masonry.pkgd.js")
+    script(type="text/javascript" src="js/dev/react.js")
+    script(type="text/javascript" src="js/dev/JSXTransformer.js")
+    script(type="text/javascript" src="js/dev/self/app.js" charset="utf-8")
+    script(type="text/jsx" src="js/dev/self/jsx/react-jsx_bak.js" charset="utf-8")
+  body
+    block content

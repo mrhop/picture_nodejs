@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" media="all" type="text/css">
+    <link rel="stylesheet" href="css/jquery-colorbox/colorbox.css" media="all" type="text/css">
+    <script type="text/javascript" src="js/dev/jquery.js"></script>
+    <script type="text/javascript" src="js/dev/bootstrap.js"></script>
+    <script type="text/javascript" src="js/dev/masonry.pkgd.js"></script>
+    <script type="text/javascript" src="js/dev/imagesloaded.pkgd.js"></script>
+    <script type="text/javascript" src="js/dev/jquery.colorbox.js"></script>
+    <script type="text/javascript" src="js/dev/app_bak.js" charset=utf-8></script>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="container">
+            <div class="left"><a href="#"><h3>PicLogo</h3></a> | <a href="#" title="发现"
+                                                                    class="glyphicon glyphicon-eye-open"></a> | <a
+                    href="#" class="glyphicon glyphicon-leaf" title="最新"></a> | <a href="#"
+                                                                                   class="glyphicon glyphicon-fire"
+                                                                                   title="最火"></a> | <a href="#"
+                                                                                                        title="我喜欢的"
+                                                                                                        class="glyphicon glyphicon-heart"></a>
+            </div>
+            <div class="right"><a href="#" class="glyphicon glyphicon-qrcode" title="扫一扫"></a></div>
+            <form>
+                <input type="text" class="form-control" placeholder="输入您感兴趣的......">
+                <a href="#" class="glyphicon glyphicon-search"></a>
+            </form>
+        </div>
+
+    </div>
+    <div class="main">
+        <div id="fall">
+            <div class="pic-container">
+                <a class="pic-container-a" title="我的测试" href="images/example/1.jpg"><img
+                        src="images/example/1.jpg"/></a>
+
+                <div class="desc"><p><span class="glyphicon glyphicon-tag" title="标签"></span><span
+                        class="clip">金鱼</span><span class="clip">金鱼</span><span class="clip">金鱼</span></p>
+
+                    <p class="desc-p"><span class="glyphicon glyphicon-comment" title="描述"></span>very foodvery foodvery
+                        foodvery</p>
+                </div>
+                <span class="like glyphicon glyphicon-heart"></span><span
+                    class="up glyphicon glyphicon-thumbs-up"></span>
+            </div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/2.jpg"><img
+                    src="images/example/2.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/3.jpg"><img
+                    src="images/example/3.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/4.jpg"><img
+                    src="images/example/4.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/5.jpg"><img
+                    src="images/example/5.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/6.jpg"><img
+                    src="images/example/6.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/7.jpg"><img
+                    src="images/example/7.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/8.jpg"><img
+                    src="images/example/8.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/9.jpg"><img
+                    src="images/example/9.jpg"/></a></div>
+            <div class="pic-container"><a class="pic-container-a" href="images/example/10.jpg"><img
+                    src="images/example/10.jpg"/></a></div>
+        </div>
+        <div class="bottom">
+            <div><a class="more-pic" href="#"><h4>加载更多......</h4></a></div>
+        </div>
+    </div>
+</div>
+<div class="bottom-tool">
+    <a class="top" style="display: none;" title="回到顶部"></a>
+    <a class="add" title="添加图片" data-toggle="modal" data-target="#addModal"></a>
+</div>
+
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加图片</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="title" class="col-xs-2 control-label">标题</label>
+
+                        <div class="col-xs-8">
+                            <input type="text" id="title" class="form-control" placeholder="标题">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="filename" class="col-xs-2 control-label">图片</label>
+
+                        <div class="col-xs-8">
+                            <input type="file" id="filename" class="form-control" placeholder="图片">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">标签</label>
+
+                        <div class="col-xs-8">
+                            <label class="checkbox-inline control-label">
+                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 生活
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox2" value="option2"> 艺术
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox3" value="option3"> 开心
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-xs-2 control-label">描述</label>
+
+                        <div class="col-xs-8">
+                            <textarea id="desc" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-xs-2 control-label">推荐给大家</label>
+
+                        <div class="col-xs-8">
+                            <label class="checkbox-inline control-label">
+                                <input type="checkbox" id="inlineCheckbox4" value="option1"> &nbsp;
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

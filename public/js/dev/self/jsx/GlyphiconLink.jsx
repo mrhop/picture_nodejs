@@ -1,0 +1,13 @@
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+var React = require('react');
+module.exports = React.createClass({
+    render: function () {
+        return (
+            <a {...this.props}
+
+                className={'glyphicon '+(this.props.className || '')}/>
+        );
+    }
+});

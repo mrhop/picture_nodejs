@@ -1,0 +1,528 @@
+$body-bg: #edece9 !default;
+$screen-lg: 1280px !default;
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/close";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+
+body {
+  background-color: $body-bg;
+}
+
+.page {
+  min-width: 1024px;
+  padding-top: 48px;
+}
+
+.header, header {
+  position: fixed;
+  height: 48px;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9990;
+  background: #fff;
+  @include box-shadow(0 0 4px rgba(0, 0, 0, .2));
+  @include clearfix;
+}
+
+.header .container {
+  @media(min-width: $screen-lg) {
+    width: 1260px;
+    min-width: 1260px;
+  }
+;
+  @media(max-width: $screen-md-max) {
+    width: 992px;
+    min-width: 992px;
+  }
+  line-height: 30px;
+  vertical-align: middle;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.header a {
+  text-decoration: none;
+  color: #444;
+  outline: none;
+  cursor: pointer;
+}
+
+.header a h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.header a:hover, .header a:active, .header a.selected {
+  color: rgb(104, 176, 232);
+}
+
+.header .dropdown a:hover, .header .dropdown a:active {
+  color: rgb(104, 176, 232);
+}
+
+.header a.glyphicon-leaf:hover, .header a.glyphicon-leaf:active, .header a.glyphicon-leaf.selected {
+  color: #bddd22;
+}
+
+.header a.glyphicon-fire:hover, .header a.glyphicon-fire:active, .header a.glyphicon-fire.selected {
+  color: #ff2d51;
+}
+
+.header a.glyphicon-heart:hover, .header a.glyphicon-heart:active, .header a.glyphicon-heart.selected {
+  color: #ff2121;
+}
+
+.header .left a:hover, .header .left a:active, .header .right div > a:hover, .header .right div > a:active {
+  text-shadow: 1px 0px 1px rgba(103, 175, 233, 0.3);
+}
+
+.header .container .left {
+  float: left;
+}
+
+.header .container .left a, .header .container .right div > a {
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 0px;
+}
+
+.header .container .left a:first-child {
+  padding-left: 12px;
+}
+.header .container .left .top-logo {
+  margin-top: -10px;
+  vertical-align: middle;
+}
+
+
+.header .container .right div > a:last-child {
+  padding-right: 12px;
+}
+
+.header .center form {
+  margin-right: 260px;
+  @media(max-width: $screen-md-max) {
+    margin-right: 160px;
+  }
+  padding-right: 44px;
+  padding-left: 20px;
+  overflow: hidden;
+  float: none;
+  position: relative;
+  padding-top: 8px;
+  display: block;
+  @include opacity(0.8);
+}
+
+.header .center form:hover {
+  @include opacity(1);
+}
+
+.header .center form input {
+  width: 100%;
+  padding-right: 30px;
+}
+
+.header .center form a {
+  position: absolute;
+  right: 12px;
+  top: 16px;
+}
+
+.header .container .right {
+  float: right;
+  padding-left: 6px;
+  padding-right: 12px;
+}
+
+.header .container .right .dropdown {
+  display: inline-block;
+}
+
+.header .container .right .glyphicon-log-out {
+  display: none;
+  cursor: pointer;
+}
+
+.header .container .right .glyphicon-log-in {
+  cursor: pointer;
+}
+
+.header .container .right .dropdown button {
+  margin-top: -6px;
+  width: 100px;
+}
+
+#loginModal .modal-dialog {
+  right: 5px;
+  margin-top: 49px;
+  margin-bottom: 0px;
+  position: fixed;
+}
+
+#loginModal .modal-content {
+  width: 600px;
+  height: 260px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#loginModal div.left {
+  float: left;
+  padding-right: 10px;
+  width: 63%;
+  border: none;
+  border-right: 1px dashed #ccc;
+  height: 100%;
+  padding-left: 10px;
+}
+
+#loginModal .form-control {
+  width: 80%;
+}
+
+#loginModal h4 {
+  margin-bottom: 1px;
+}
+
+#login-form > div:first-child {
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 20px;
+}
+
+#login-form > div:last-child {
+  border-top: 1px solid #cccccc;
+  margin-top: 20px;
+}
+
+#login-form > div:last-child .col-xs-2 {
+  padding-left: 5px;
+  padding-top: 20px;
+}
+
+#loginModal div.right {
+  float: right;
+  width: 30%;
+  border: none;
+  height: 100%;
+}
+
+#loginModal .right > div:first-child {
+  margin-right: 10px;
+  border-bottom: 1px solid #cccccc;
+}
+
+#loginModal .right img {
+  margin-top: 10px;
+  height: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main, main {
+  position: relative;
+  margin: 0 auto;
+  @media(min-width: $screen-lg) {
+    width: 1260px;
+  }
+;
+  @media(max-width: $screen-md-max) {
+    width: 992px;
+  }
+}
+
+#fall {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.pic-container {
+  width: 236px;
+  font-size: 12px;
+  background: #fff center center no-repeat;
+  position: absolute;
+  @include box-shadow(0 1px 3px rgba(0, 0, 0, .3));
+  @include transition(opacity .4s ease-in-out);
+  @media(min-width: $screen-lg) {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 16px;
+  }
+;
+  @media(max-width: $screen-md-max) {
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 12px;
+  }
+;
+}
+
+.pic-container.hide {
+  margin-left: -2000px;
+}
+
+.pic-container a:first-child {
+  display: block;
+  outline: none;
+}
+
+.pic-container a:first-child:hover {
+  @include opacity(0.8);
+}
+
+.pic-container span.like, .pic-container span.up {
+  position: absolute;
+  /*color: red;*/
+  color: white;
+  font-size: 16px;
+  padding: 7px 5px 5px 5px;
+  display: none;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.pic-container span.like {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.pic-container span.glyphicon-heart.true, .pic-container span.glyphicon-thumbs-up.true {
+  color: #ff2121;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.pic-container span.up {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+
+.pic-container:hover span.like, .pic-container:hover span.up {
+  display: block;
+  @include opacity(0.8);
+}
+
+.pic-container span.like:hover, .pic-container span.up:hover {
+  @include opacity(1);
+}
+
+.pic-container a:first-child img {
+  width: 100%;
+  display: block;
+}
+
+.pic-container.is-loading img,
+.pic-container.is-broken img {
+  opacity: 0;
+}
+
+.pic-container .desc {
+  color: #999;
+  border-top: 1px solid #F2F2F2;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.pic-container .desc .clip {
+  background-color: #5bc0de;
+  border: 1px solid #46b8da;
+  cursor: pointer;
+  padding: 3px;
+  margin-left: 5px;
+  color: white;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.pic-container .desc .glyphicon-comment {
+  margin-right: 5px;
+}
+
+.pic-container .desc p {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.pic-container .desc span.glyphicon {
+  color: #999;
+}
+
+.pic-container .desc p.desc-p {
+  color: #222222;
+  font-size: 13px;
+}
+
+.pic-container .desc .clip:hover {
+  background-color: darken(#5bc0de, 25%);
+  border-color: darken(#46b8da, 10%);
+}
+
+.main .bottom {
+  margin-top: 80px;
+  margin-bottom: 120px;
+  height: 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  width: 100%;
+  text-align: center;
+}
+
+.main .bottom {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  height: 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  width: 100%;
+  text-align: center;
+}
+
+.main .bottom > div {
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #edece9;
+}
+
+a.more-pic {
+  text-decoration: none;
+  display: block;
+  margin-top: -35px;
+  width: 100%;
+  background-color: white;
+  color: #555555;
+  padding: 10px 5px;
+}
+
+a.more-pic:hover, a.more-pic:active {
+  background-color: rgb(104, 176, 232);
+  color: white;
+}
+
+.bottom-tool {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  overflow: hidden;
+  z-index: 9989;
+}
+
+.bottom-tool .top {
+  background: url(../images/iconsprite_btbar.png) 8px 6px no-repeat;
+}
+
+.bottom-tool .add {
+  display: none;
+  background: url(../images/iconsprite_btbar.png) 8px -34px no-repeat;
+  margin-top: 8px;
+}
+
+.bottom-tool .top, .bottom-tool .add {
+  display: block;
+  width: 40px;
+  height: 36px;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, .6);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+}
+
+#addModal .modal-dialog {
+
+  @media(max-width: $screen-sm-max) {
+    min-width: 600px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+#addModal .modal-dialog .modal-body {
+  padding-top: 14px;
+}
+
+#addModal .modal-dialog .modal-body .tag-small{
+  font-size: 12px;
+}
+
+#addTag {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#addTag a {
+  color: rgb(68, 68, 68);
+  cursor: pointer;
+  text-decoration: none;
+  padding-top: 5px;
+}
+
+#addTag a:hover, #addTag a:active {
+  color: rgb(104, 176, 232);
+}
+
+#addTag a.glyphicon-trash {
+  display: none;
+}
+
+#addTag input {
+  padding: 2px;
+  border-left: none;
+  border-radius: 0;
+  border-top: none;
+  border-right: none;
+  box-shadow: none;
+  width: 45px;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.form-control {
+  height: 18px;
+}
+
+.form-group {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-group .control-label {
+  line-height: 18px;
+  vertical-align: middle;
+}
+
+.table-condensed > thead > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > tfoot > tr > td {
+  padding: 2px;
+}
+
+.datepicker .table-condensed {
+  font-size: 12px;
+}
+
+.datepicker table.table-condensed tr th {
+  height: 20px;
+}
+
+#cboxTitle {
+  font-size: 11px;
+}
