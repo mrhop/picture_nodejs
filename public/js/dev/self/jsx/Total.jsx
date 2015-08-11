@@ -1,13 +1,12 @@
 /**
  * Created by Donghui Huo on 2015/7/16.
  */
-var React = require('react');
-var $ = require('jquery');
+var React =global.React =  require('react');
+global.$ =global.jQuery =  require('jquery');
 require("bootstrap");
 require("bootstrapdatepicker");
 require("bootstrapdatepickerzhcn");
 require("jquerycolorbox");
-require('jquery.cookie');
 var GlyphiconGroup = require("./GlyphiconGroup.jsx");
 var GlyphiconGroupRight = require("./GlyphiconGroupRight.jsx");
 var FormHead = require("./FormHead.jsx");

@@ -1,8 +1,6 @@
 /**
  * Created by Donghui Huo on 2015/7/16.
  */
-var React = require('react');
-var $ = require('jquery');
 module.exports = React.createClass({
     componentDidMount: function () {
         $(".bottom-tool .top").click(function () {

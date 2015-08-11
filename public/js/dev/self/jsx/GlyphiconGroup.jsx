@@ -1,8 +1,6 @@
 /**
  * Created by Donghui Huo on 2015/7/16.
  */
-var React = require('react');
-var $ = require('jquery');
 var $picture = require("../picture");
 var cookie = require('cookie-dough')();
 var GlyphiconLink = require("./GlyphiconLink.jsx");

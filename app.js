@@ -6,6 +6,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var compression = require('compression')
 
 //var mongo = require('mongodb');
 //var monk = require('monk');
@@ -18,7 +19,16 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+//compress
+app.use(compression({filter: shouldCompress}))
+function shouldCompress(req, res) {
+    if (req.headers['x-no-compression']) {
+        // don't compress responses with this request header
+        return false
+    }
+    // fallback to standard filter function
+    return compression.filter(req, res)
+}
 //session deal
 app.use(session({
     genid: function (req) {

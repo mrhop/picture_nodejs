@@ -22,6 +22,15 @@ module.exports = function (grunt) {
                     cssDir: ['public/css'],
                     environment: 'production'
                 }
+            },
+            mobile: {
+                options: {
+                    force: true,
+                    sassDir: ['scss'],
+                    specify: 'scss/mobile.scss',
+                    cssDir: ['public/css'],
+                    environment: 'development'
+                }
             }
         },
         'copy': {
@@ -70,8 +79,15 @@ module.exports = function (grunt) {
                 transform: [require('grunt-react').browserify, "browserify-shim"]
             },
             react: {
-                src: ['public/js/dev/self/jsx/*.jsx'],
+                src: ['public/js/dev/self/jsx/Total.jsx'],
                 dest: 'public/js/dev/self/react-js.js',
+                options: {
+                    transform: [require('grunt-react').browserify, "browserify-shim"]
+                }
+            },
+            mobile: {
+                src: ['public/js/dev/self/jsx/mobile/Total.jsx'],
+                dest: 'public/js/dev/self/mobile.js',
                 options: {
                     transform: [require('grunt-react').browserify, "browserify-shim"]
                 }
@@ -81,8 +97,19 @@ module.exports = function (grunt) {
             my_target: {
                 files: {
                     'public/js/all.min.js': ['public/js/dev/self/react-js.js'],
-                    'public/js/masonry.pkgd.min.js': ['public/js/dev/masonry.pkgd.js']
+                    'public/js/masonry.pkgd.min.js': ['public/js/dev/masonry.pkgd.js'],
+                    'public/js/mobile.min.js': ['public/js/dev/self/mobile.js']
                 }
+            }
+        },
+        watch: {
+            css: {
+                files: ['scss/*.scss'],
+                tasks: ['compass:mobile']
+            },
+            js: {
+                files: ['public/js/dev/self/jsx/mobile/*.jsx','public/js/dev/self/picture-mobile.js'],
+                tasks: ['browserify:mobile']
             }
         }
     });
@@ -92,6 +119,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('build', "Builds the application.",
-        ['compass:prod','browserify:react', 'uglify']);
+        ['compass:prod', 'browserify:react', 'browserify:mobile', 'uglify']);
 }

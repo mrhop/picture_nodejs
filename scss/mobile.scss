@@ -1,0 +1,744 @@
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+
+* {
+  //outline: 1px dotted red;
+}
+
+//animate
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated-fast {
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes slideInLeft {
+  0% {
+    margin-left: -100%;
+    visibility: visible;
+  }
+
+  100% {
+    margin-left: 0%;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    margin-left: -100%;
+    visibility: visible;
+  }
+
+  100% {
+    margin-left: 0%;
+  }
+}
+
+.slideInLeft {
+  -webkit-animation-name: slideInLeft;
+  animation-name: slideInLeft;
+}
+
+@-webkit-keyframes slideInHeaderLeft {
+  0% {
+    -webkit-transform: translateX(-24px);
+    transform: translateX(-24px);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInHeaderLeft {
+  0% {
+    -webkit-transform: translateX(-24px);
+    transform: translateX(-24px);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+.slideInHeaderLeft {
+  -webkit-animation-name: slideInHeaderLeft;
+  animation-name: slideInHeaderLeft;
+}
+
+@-webkit-keyframes slideInRight {
+  0% {
+    margin-right: -100%;
+    visibility: visible;
+  }
+
+  100% {
+    margin-right: 0;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    margin-right: -100%;
+    visibility: visible;
+  }
+
+  100% {
+    margin-right: 0;
+  }
+}
+
+.slideInRight {
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+}
+
+
+@-webkit-keyframes slideOutLeft {
+  0% {
+    margin-left: 0;
+  }
+
+  100% {
+    visibility: hidden;
+    margin-left: -100%;
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    margin-left: 0;
+  }
+
+  100% {
+    visibility: hidden;
+    margin-left: -100%;
+  }
+}
+
+.slideOutLeft {
+  -webkit-animation-name: slideOutLeft;
+  animation-name: slideOutLeft;
+}
+
+@-webkit-keyframes slideOutRight {
+  0% {
+    margin-right: 0;
+  }
+
+  100% {
+    visibility: hidden;
+    margin-right: -100%;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    margin-right: 0;
+  }
+
+  100% {
+    visibility: hidden;
+    margin-right: -100%;
+  }
+}
+
+.slideOutRight {
+  -webkit-animation-name: slideOutRight;
+  animation-name: slideOutRight;
+}
+
+@-webkit-keyframes slideOutHeaderLeft {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    -webkit-transform: translateX(-24px);
+    transform: translateX(-24px);
+  }
+}
+
+@keyframes slideOutHeaderLeft {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    -webkit-transform: translateX(-24px);
+    transform: translateX(-24px);
+  }
+}
+
+.slideOutHeaderLeft {
+  -webkit-animation-name: slideOutHeaderLeft;
+  animation-name: slideOutHeaderLeft;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+@-webkit-keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+}
+
+@-webkit-keyframes slideInUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.slideInUp {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+}
+
+@-webkit-keyframes slideOutDown {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    visibility: hidden;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slideOutDown {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    visibility: hidden;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+  }
+}
+
+.slideOutDown {
+  -webkit-animation-name: slideOutDown;
+  animation-name: slideOutDown;
+}
+
+@-webkit-keyframes slideOutUp {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    visibility: hidden;
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideOutUp {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    visibility: hidden;
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+}
+
+.slideOutUp {
+  -webkit-animation-name: slideOutUp;
+  animation-name: slideOutUp;
+}
+
+//animate end
+a {
+  text-decoration: none;
+  color: #444;
+  outline: none;
+  cursor: pointer;
+}
+
+a:hover, a:active, a.selected {
+  color: rgb(104, 176, 232);
+  text-decoration: none;
+}
+
+a:link,a:visited {
+  text-decoration: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: #edece9;
+}
+
+.page {
+  position: relative;
+  padding-top: 48px;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+}
+
+.header {
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 48px;
+  width: 100%;
+  min-width: 100%;
+  background-color: rgb(255, 255, 255);
+  font-size: 24px;
+  line-height: 48px;
+  vertical-align: middle;
+  font-weight: 100;
+  @include box-shadow(1px 0px 8px -2px #0b1621);
+}
+
+.header .top-logo {
+  height: 30px;
+  margin-top: -7px;
+}
+
+.header a.left-a {
+  display: inline-block;
+  padding-right: 5px;
+  float: left;
+}
+
+.header a.left-a:hover, .header a.left-a:active {
+  color: #444;
+  background-color: rgba(104, 176, 232, 0.4);
+  @include box-shadow(1px 0px 8px -2px #0b1621);
+}
+
+#header-form {
+  margin-left: 110px;
+  margin-right: 10px;
+}
+
+#header-form input {
+  display: none;
+  width: 100%;
+  height: 30px;
+  line-height: 18px;
+  margin-top: 7px;
+  padding: 6px 12px 6px 5px;
+  font-size: 14px;
+  color: #555;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+}
+
+#header-form a {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  top: 14px;
+}
+
+#header-form a.glyphicon-remove {
+  display: none;
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  top: 14px;
+}
+
+//left 部分
+.left-menu {
+  overflow: hidden;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 51px;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  @include box-shadow(1px 0px 8px -2px #0b1621);
+}
+
+.left-menu-open {
+  width: 70%;
+}
+
+div.login .left-menu-open {
+  width: 30%;
+}
+
+div.left-back-mask {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 51px;
+  left: 0;
+  background: rgba(122, 122, 122, 0.3);
+  @include box-shadow(1px 0px 8px -2px #0b1621);
+  @include opacity(1);
+  z-index: 99;
+}
+
+div.left-inner {
+  padding: 40px 5px;
+  text-align: center;
+}
+
+div.page div.login-user {
+  display: none;
+}
+
+div.page form.not-login-form {
+  display: block;
+}
+
+div.page.login div.login-user {
+  display: block;
+}
+
+div.page.login form.not-login-form {
+  display: none;
+}
+
+div.login-user p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+div.login-user p:first-child span {
+  font-size: 50px;
+}
+
+div.login-user p:first-child a {
+  font-size: 20px;
+  display: inline-block;
+  margin-right: -20px;
+}
+
+div.login-user p:nth-child(2) span {
+  font-size: 20px;
+}
+
+form.not-login-form p:first-child {
+  text-align: left;
+  padding-left: 25%;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+form.not-login-form input {
+  width: 50%;
+  height: 32px;
+  padding: 6px 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border-radius: 4px;
+}
+
+form.not-login-form input:focus {
+  border: 1px solid rgb(104, 176, 232);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+form.not-login-form .login-p {
+  overflow: hidden;
+  padding-right: 25%;
+}
+
+form.not-login-form .login-p button {
+  float: right;
+  padding: 5px 12px;
+}
+
+div.left-inner > a {
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+div.left-inner > a:hover, div.left-inner > a:active, div.left-inner > a.selected {
+  color: #444;
+  background-color: rgba(104, 176, 232, 0.4);
+  @include box-shadow(1px 0px 8px -2px #0b1621);
+}
+
+div.left-inner > a:hover .glyphicon-leaf, div.left-inner > a:active .glyphicon-leaf, div.left-inner > a.selected .glyphicon-leaf {
+  color: #bddd22;
+}
+
+div.left-inner > a:hover .glyphicon-fire, div.left-inner > a:active .glyphicon-fire, div.left-inner > a.selected .glyphicon-fire {
+  color: #ff2d51;
+}
+
+div.left-inner > a:hover .glyphicon-heart, div.left-inner > a:active .glyphicon-heart, div.left-inner > a.selected .glyphicon-heart {
+  color: #ff2121;
+}
+
+div.main {
+  width: 100%;
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+div.main .picture-container {
+  width: 32%;
+  margin: 3px auto;
+  position: relative;
+  @include box-shadow(1px 0px 8px -2px #0b1621);
+}
+
+div.picture-container img {
+  width: 100%;
+}
+
+div.picture-container a.glyphicon {
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  bottom: 5px;
+  top: auto;
+}
+
+div.picture-container a.glyphicon-thumbs-up {
+  right: 5px;
+}
+
+div.picture-container a.glyphicon-heart {
+  left: 5px;
+}
+
+div.picture-container a.glyphicon-thumbs-up span, div.picture-container a.glyphicon-heart span {
+  padding-left: 4px;
+}
+
+//单页部分
+body.single {
+  color: #fff !important;
+}
+
+body.single a {
+  color: #fff;
+}
+
+body.single a:hover, body.single a:active {
+  color: rgb(104, 176, 232);
+}
+
+body.single .header, body.single .bottom {
+  background-color: rgba(255, 255, 255, 0);
+  @include box-shadow(none);
+  z-index: 100;
+}
+
+body.single .page {
+  padding-top: 0;
+}
+
+body.single .main {
+  padding-top: 0;
+  align-items: center;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+body.single img {
+  width: 100%;
+  min-width: 100%;
+}
+
+body.single .main-img-left {
+  margin-left: -100%;
+}
+
+
+body.single .main-img-right {
+  margin-right: -100%;
+}
+
+
+body.single .bottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+body.single .bottom p {
+  margin: 5px auto 5px auto;
+}
+
+body.single .bottom .glyphicon-heart:hover, body.single .bottom .glyphicon-heart:active, body.single .bottom .glyphicon-heart.selected {
+  color: #ff2121;
+}
+
+body.single .bottom span.left a:hover, body.single .bottom span.left a:active, body.single .bottom span.left a.selected {
+  color: #fff;
+}
+
+body.single .bottom div.desc {
+  border-bottom: 1px solid #FFF;
+}
+
+body.single .bottom-tool .left {
+  float: left;
+}
+
+body.single .bottom-tool .left a {
+  display: block;
+  margin-left: 4px;
+  padding: 2px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+body.single .bottom-tool .right {
+  float: right;
+}
+
+body.single .bottom-tool .right .glyphicon-thumbs-up {
+  margin-left: 20px;
+  margin-right: 4px;
+}

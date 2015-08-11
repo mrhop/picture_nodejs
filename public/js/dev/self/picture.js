@@ -2,7 +2,6 @@
  * Created by Donghui Huo on 2015/6/30.
  */
 'use strict';
-var jQuery = require('jquery');
 var cookie = require('cookie-dough')();
 module.exports = (function ($, window, undefined) {
     'use strict';
@@ -238,5 +237,5 @@ module.exports = (function ($, window, undefined) {
         }
     };
     return new $.Picture();
-})(jQuery, window);
+})(global.$, window);
 
