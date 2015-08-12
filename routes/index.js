@@ -6,7 +6,7 @@ var fs = require('fs');
 var md5 = require('md5');
 var extend = require('util')._extend
 var concat = require('unique-concat');
-var mobileRegex = /(Android|iPhone|iPod|iPad|Windows Phone|MQQBrowser)+/gi;
+var mobileRegex = /.*AppleWebKit.*Mobile.*/gi;
 require('date-utils');
 var array = require("array-extended");
 var pic_select = {
@@ -30,7 +30,7 @@ router.get('/', function (req, res, next) {
     res.clearCookie("limitnum", {maxAge: -1, httpOnly: false});
     res.clearCookie("start", {maxAge: -1, httpOnly: false});
     var userAgent = req.get('User-Agent');
-    if (mobileRegex.test(userAgent)) {
+    if (userAgent.match(mobileRegex)) {
         res.render('mobile');
     } else {
         res.render('index');
@@ -43,8 +43,8 @@ router.get('/mobile', function (req, res, next) {
     res.clearCookie("limitnum", {maxAge: -1, httpOnly: false});
     res.clearCookie("start", {maxAge: -1, httpOnly: false});
     res.cookie('username', "abc", {maxAge: 7200000, httpOnly: false});
-    //res.clearCookie("single", {maxAge: -1, httpOnly: false});
-    res.cookie('single', "abc", {maxAge: 7200000, httpOnly: false});
+    res.clearCookie("single", {maxAge: -1, httpOnly: false});
+    //res.cookie('single', "abc", {maxAge: 7200000, httpOnly: false});
     res.render('mobile');
 });
 //慢慢需要加上每年年表

@@ -9,7 +9,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div className="left">
-                <div className="left-menu animated">
+                <div className="left-menu animated-fast">
                     <div className="left-inner">
                         <div className="login-user">
                             <p><span className="glyphicon glyphicon-user"></span> <a className="glyphicon glyphicon-log-out"></a></p>

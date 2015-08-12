@@ -6,8 +6,7 @@ var Left = require("./Left.jsx");
 var Main = require("./Main.jsx");
 module.exports = React.createClass({
     getInitialState: function () {
-        //将数据进行初始化
-
+        return null;
     },
     componentDidMount:function(){
         global.$picture.showHideLeftBind();

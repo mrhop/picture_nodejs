@@ -3,7 +3,7 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
-
+@import "compass/css3";
 * {
   //outline: 1px dotted red;
 }
@@ -485,7 +485,7 @@ body {
 }
 
 body.login .left-menu-open {
-  width: 30%;
+  width: 50%;
 }
 
 div.left-back-mask {
@@ -611,9 +611,12 @@ div.left-inner > a:hover .glyphicon-heart, div.left-inner > a:active .glyphicon-
 div.main {
   width: 100%;
   padding-top: 5px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  @include display-flex(flex);
+  @include justify-content(center);
+  @include flex-wrap(wrap);
+  //display: flex;
+  //justify-content: center;
+ // flex-wrap: wrap;
 }
 
 div.main .picture-container {
@@ -683,11 +686,15 @@ body.single .page {
 
 body.single .main {
   padding-top: 0;
-  align-items: center;
+  //align-items: center;
   overflow: hidden;
-  flex-wrap: nowrap;
-  display: flex;
-  justify-content: space-around;
+  @include align-items(center);
+  @include display-flex(flex);
+  @include flex-wrap(nowrap);
+  @include justify-content(space-around);
+  //flex-wrap: nowrap;
+  //display: flex;
+  //justify-content: space-around;
   width: 100%;
   height: 100%;
 }

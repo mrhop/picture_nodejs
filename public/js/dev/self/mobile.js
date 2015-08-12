@@ -24095,7 +24095,7 @@ module.exports = React.createClass({displayName: "exports",
     render: function () {
         return (
             React.createElement("div", {className: "left"}, 
-                React.createElement("div", {className: "left-menu animated"}, 
+                React.createElement("div", {className: "left-menu animated-fast"}, 
                     React.createElement("div", {className: "left-inner"}, 
                         React.createElement("div", {className: "login-user"}, 
                             React.createElement("p", null, React.createElement("span", {className: "glyphicon glyphicon-user"}), " ", React.createElement("a", {className: "glyphicon glyphicon-log-out"})), 
@@ -24170,8 +24170,7 @@ var Left = require("./Left.jsx");
 var Main = require("./Main.jsx");
 module.exports = React.createClass({displayName: "exports",
     getInitialState: function () {
-        //�����ݽ��г�ʼ��
-
+        return null;
     },
     componentDidMount:function(){
         global.$picture.showHideLeftBind();
