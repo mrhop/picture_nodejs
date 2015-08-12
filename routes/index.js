@@ -6,6 +6,7 @@ var fs = require('fs');
 var md5 = require('md5');
 var extend = require('util')._extend
 var concat = require('unique-concat');
+var mobileRegex = /(Android|iPhone|iPod|iPad|Windows Phone|MQQBrowser)+/gi;
 require('date-utils');
 var array = require("array-extended");
 var pic_select = {
@@ -28,7 +29,23 @@ router.get('/', function (req, res, next) {
     res.clearCookie("dateType", {maxAge: -1, httpOnly: false});
     res.clearCookie("limitnum", {maxAge: -1, httpOnly: false});
     res.clearCookie("start", {maxAge: -1, httpOnly: false});
-    res.render('index');
+    var userAgent = req.get('User-Agent');
+    if (mobileRegex.test(userAgent)) {
+        res.render('mobile');
+    } else {
+        res.render('index');
+    }
+});
+
+/* GET home page. */
+router.get('/mobile', function (req, res, next) {
+    res.clearCookie("dateType", {maxAge: -1, httpOnly: false});
+    res.clearCookie("limitnum", {maxAge: -1, httpOnly: false});
+    res.clearCookie("start", {maxAge: -1, httpOnly: false});
+    res.cookie('username', "abc", {maxAge: 7200000, httpOnly: false});
+    //res.clearCookie("single", {maxAge: -1, httpOnly: false});
+    res.cookie('single', "abc", {maxAge: 7200000, httpOnly: false});
+    res.render('mobile');
 });
 //慢慢需要加上每年年表
 function getDateScope(req, defaultBegin, defaultEnd) {
@@ -400,47 +417,47 @@ router.get('/logout', function (req, res, next) {
     res.send({"success": true});
 });
 router.get('/tag', function (req, res, next) {
-    if(req.cookies.username){
+    if (req.cookies.username) {
         db.User.findOne({is_hide: false, user_name: req.cookies.username}).exec(function (e, doc) {
             if (e) {
                 return handleError(res, error);
             }
             res.send(doc.user_tags);
         });
-    }else{
+    } else {
         res.send([]);
     }
 });
 
 router.post('/tag/add', function (req, res, next) {
-    if(req.cookies.username){
+    if (req.cookies.username) {
         db.User.findOne({is_hide: false, user_name: req.cookies.username}).exec(function (e, doc) {
             if (e) {
                 return handleError(res, error);
             }
-            doc.user_tags = concat(doc.user_tags,[req.body.tag]);
+            doc.user_tags = concat(doc.user_tags, [req.body.tag]);
             doc.save();
             res.send(doc.user_tags);
         });
-    }else{
+    } else {
         res.send([]);
     }
 });
 
 
 router.post('/tag/delete', function (req, res, next) {
-    if(req.cookies.username){
+    if (req.cookies.username) {
         db.User.findOne({is_hide: false, user_name: req.cookies.username}).exec(function (e, doc) {
             if (e) {
                 return handleError(res, error);
             }
-            for(var key in req.body.tag){
+            for (var key in req.body.tag) {
                 doc.user_tags.splice(doc.user_tags.indexOf(key), 1);
             }
             doc.save();
             res.send(doc.user_tags);
         });
-    }else{
+    } else {
         res.send([]);
     }
 });
@@ -453,8 +470,8 @@ router.post('/heart', function (req, res, next) {
             if (e) {
                 return handleError(res, error);
             }
-            if (req.body.heartFlag=='true') {
-                doc.heart_users = concat(doc.heart_users,[sess.user.user_name]);
+            if (req.body.heartFlag == 'true') {
+                doc.heart_users = concat(doc.heart_users, [sess.user.user_name]);
                 doc.heart_times = doc.heart_times + 1;
             } else {
                 if (doc.heart_users.indexOf(sess.user.user_name) > -1) {
@@ -478,7 +495,7 @@ router.post('/up', function (req, res, next) {
         }
         var sess = req.session;
         if (sess.user && doc.up_users.indexOf(sess.user.user_name) < 0) {
-            doc.up_users = concat(doc.up_users,[sess.user.user_name]);
+            doc.up_users = concat(doc.up_users, [sess.user.user_name]);
         }
         doc.up_times = doc.up_times + 1;
         doc.save();

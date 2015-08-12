@@ -120,7 +120,7 @@ module.exports = (function ($, window, undefined) {
                 $(ev.target).next().addClass("slideInRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     $(this).removeClass("main-img-right").removeClass("slideInRight").addClass("main-img");
                     if (!$(this).next()[0]) {
-                        $('<img class="main-img-right animated-fast" src="pictures/big4.jpg">').insertAfter($(this));
+                        $('<img class="main-img-right animated-fast" draggable="false" src="pictures/big4.jpg">').insertAfter($(this));
                     }
                     $picture.swipeImgEventAdd(this);
                 });
@@ -137,7 +137,7 @@ module.exports = (function ($, window, undefined) {
                 $(ev.target).prev().addClass("slideInLeft").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     $(this).removeClass("main-img-left").removeClass("slideInLeft").addClass("main-img");
                     if (!$(this).prev()[0]) {
-                        $('<img class="main-img-left animated-fast" src="pictures/big4.jpg">').insertBefore($(this));
+                        $('<img class="main-img-left animated-fast" draggable="false" src="pictures/big4.jpg">').insertBefore($(this));
                     }
                     $picture.swipeImgEventAdd(this);
                 });

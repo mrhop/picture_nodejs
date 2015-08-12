@@ -108,7 +108,6 @@
   animation-name: slideInRight;
 }
 
-
 @-webkit-keyframes slideOutLeft {
   0% {
     margin-left: 0;
@@ -379,7 +378,7 @@ a:hover, a:active, a.selected {
   text-decoration: none;
 }
 
-a:link,a:visited {
+a:link, a:visited {
   text-decoration: none;
 }
 
@@ -485,7 +484,7 @@ body {
   width: 70%;
 }
 
-div.login .left-menu-open {
+body.login .left-menu-open {
   width: 30%;
 }
 
@@ -516,11 +515,11 @@ div.page form.not-login-form {
   display: block;
 }
 
-div.page.login div.login-user {
+body.login div.page div.login-user {
   display: block;
 }
 
-div.page.login form.not-login-form {
+body.login div.page form.not-login-form {
   display: none;
 }
 
@@ -667,8 +666,19 @@ body.single .header, body.single .bottom {
   z-index: 100;
 }
 
+body.single .header .glyphicon-arrow-left {
+  margin-left: 4px;
+  display: inline-block;
+}
+body.single .header .glyphicon-download-alt {
+  margin-right: 4px;
+  display: inline-block;
+}
+
+
 body.single .page {
   padding-top: 0;
+  background-color: #000;
 }
 
 body.single .main {
@@ -691,11 +701,9 @@ body.single .main-img-left {
   margin-left: -100%;
 }
 
-
 body.single .main-img-right {
   margin-right: -100%;
 }
-
 
 body.single .bottom {
   position: fixed;

@@ -24012,6 +24012,212 @@ exports.$ = window.$
 })(Zepto)
 ;
 },{}],161:[function(require,module,exports){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+module.exports = React.createClass({displayName: "exports",
+    handleSubmit: function () {
+        console.log("right");
+        return false;
+    },
+    render: function () {
+        return (
+            React.createElement("div", {className: "bottom animated-fast"}, 
+                React.createElement("div", {className: "desc"}, 
+                    React.createElement("p", null, "2011/11/11"), 
+                    React.createElement("p", null, "一些介绍，一些说明")
+                ), 
+                React.createElement("p", {className: "bottom-tool"}, 
+                    React.createElement("span", {className: "left"}, React.createElement("a", null, "返回相册")), 
+                    React.createElement("span", {className: "right"}, 
+                        React.createElement("a", {className: "glyphicon glyphicon-heart"}), React.createElement("a", {className: "glyphicon glyphicon-thumbs-up"})
+                    )
+                )
+            )
+        );
+    }
+});
+},{}],162:[function(require,module,exports){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+module.exports = React.createClass({displayName: "exports",
+    handleSubmit: function () {
+        console.log("right");
+        return false;
+    },
+    render: function () {
+        return (
+            React.createElement("div", {className: "header"}, 
+                React.createElement("a", {className: "left-a animated"}, 
+                    React.createElement("span", {className: "glyphicon glyphicon-th-list"}), " ", 
+                    React.createElement("img", {className: "top-logo", src: "images/logo.png"})
+                ), 
+                    React.createElement("form", {id: "header-form", onSubmit: this.handleSubmit}, 
+                        React.createElement("input", {type: "text", placeholder: "输入您感兴趣的......"}), 
+                        React.createElement("a", {className: "glyphicon glyphicon-remove"}), 
+                        React.createElement("a", {className: "glyphicon glyphicon-search"})
+                    )
+            )
+        );
+    }
+});
+},{}],163:[function(require,module,exports){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+module.exports = React.createClass({displayName: "exports",
+    handleSubmit: function () {
+        console.log("right");
+        return false;
+    },
+    render: function () {
+        return (
+            React.createElement("div", {className: "header animated-fast"}, 
+                React.createElement("a", {className: "glyphicon glyphicon-arrow-left"}), 
+                React.createElement("span", null, "1/2"), 
+                React.createElement("span", {style: {float:"right"}}, 
+                    React.createElement("a", {className: "glyphicon glyphicon-download-alt", href: "pictures/big.jpg", download: "big.jpg"})
+                )
+            )
+        );
+    }
+});
+},{}],164:[function(require,module,exports){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+module.exports = React.createClass({displayName: "exports",
+    handleSubmit: function () {
+        console.log("right");
+        return false;
+    },
+    render: function () {
+        return (
+            React.createElement("div", {className: "left"}, 
+                React.createElement("div", {className: "left-menu animated"}, 
+                    React.createElement("div", {className: "left-inner"}, 
+                        React.createElement("div", {className: "login-user"}, 
+                            React.createElement("p", null, React.createElement("span", {className: "glyphicon glyphicon-user"}), " ", React.createElement("a", {className: "glyphicon glyphicon-log-out"})), 
+                            React.createElement("p", null, React.createElement("span", null, "huodh"))
+                        ), 
+                        React.createElement("form", {className: "not-login-form", onSubmit: this.handleSubmit}, 
+                            React.createElement("p", null, "用户登录"), 
+                            React.createElement("p", null, React.createElement("input", {type: "txt", placeholder: "用户名"})), 
+                            React.createElement("p", null, React.createElement("input", {type: "password", placeholder: "密 码"})), 
+                            React.createElement("p", {className: "login-p"}, React.createElement("button", {onClick: this.handleSubmit}, "登录"))
+                        ), 
+                        React.createElement("a", null, React.createElement("span", {className: "glyphicon glyphicon-eye-open"}), React.createElement("span", {style: {paddingLeft:"5px"}}, "发现")), 
+                        React.createElement("a", null, React.createElement("span", {className: "glyphicon glyphicon-leaf"}), React.createElement("span", {style: {paddingLeft:"5px"}}, "最新")), 
+                        React.createElement("a", null, React.createElement("span", {className: "glyphicon glyphicon-fire"}), React.createElement("span", {style: {paddingLeft:"5px"}}, "最火")), 
+                        React.createElement("a", null, React.createElement("span", {className: "glyphicon glyphicon-heart"}), React.createElement("span", {style: {paddingLeft:"5px"}}, "收藏"))
+                    )
+                ), 
+                React.createElement("div", {className: "left-back-mask animated"})
+            )
+        );
+    }
+});
+},{}],165:[function(require,module,exports){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+module.exports = React.createClass({displayName: "exports",
+    handleSubmit: function () {
+        console.log("right");
+        return false;
+    },
+    render: function () {
+        return (
+            React.createElement("div", {className: "main"}, 
+                React.createElement("div", {className: "picture-container"}, 
+                    React.createElement("img", {src: "pictures/1.jpg", draggable: "false"}), 
+                    React.createElement("a", {className: "glyphicon glyphicon-heart"}, React.createElement("span", null, "12")), 
+                    React.createElement("a", {className: "glyphicon glyphicon-thumbs-up"}, React.createElement("span", null, "12"))
+                ), 
+                React.createElement("div", {className: "picture-container"}, React.createElement("img", {src: "pictures/1.jpg", draggable: "false"})), 
+                React.createElement("div", {className: "picture-container"}, React.createElement("img", {src: "pictures/1.jpg", draggable: "false"}))
+            )
+        );
+    }
+});
+},{}],166:[function(require,module,exports){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+module.exports = React.createClass({displayName: "exports",
+    handleSubmit: function () {
+        console.log("right");
+        return false;
+    },
+    render: function () {
+        return (
+                React.createElement("div", {className: "main"}, 
+                    React.createElement("img", {className: "main-img-left animated-fast", draggable: "false", src: "pictures/big2.jpg"}), 
+                    React.createElement("img", {className: "main-img animated-fast", draggable: "false", src: "pictures/big.jpg"}), 
+                    React.createElement("img", {className: "main-img-right animated-fast", draggable: "false", src: "pictures/big3.jpg"})
+                )
+        );
+    }
+});
+},{}],167:[function(require,module,exports){
+(function (global){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+var Head = require("./Head.jsx");
+var Left = require("./Left.jsx");
+var Main = require("./Main.jsx");
+module.exports = React.createClass({displayName: "exports",
+    getInitialState: function () {
+        //�����ݽ��г�ʼ��
+
+    },
+    componentDidMount:function(){
+        global.$picture.showHideLeftBind();
+    },
+    render: function () {
+        return (
+            React.createElement("div", null, 
+                React.createElement(Head, null), 
+                React.createElement("div", {className: "page"}, 
+                    React.createElement(Left, null), 
+                    React.createElement(Main, null)
+                )
+            )
+        );
+    }
+});
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./Head.jsx":162,"./Left.jsx":164,"./Main.jsx":165}],168:[function(require,module,exports){
+(function (global){
+/**
+ * Created by Donghui Huo on 2015/7/16.
+ */
+var Head = require("./HeadSingle.jsx");
+var Main = require("./MainSingle.jsx");
+var Bottom = require("./BottomSingle.jsx");
+module.exports = React.createClass({displayName: "exports",
+    handleSubmit: function () {
+        console.log("right");
+        return false;
+    },
+    componentDidMount: function () {
+        global.$picture.showHideBarBind();
+        global.$picture.swipeImgEventAdd(document.querySelector(".main-img"));
+    },
+    render: function () {
+        return (
+            React.createElement("div", {className: "page"}, 
+                React.createElement(Head, null), 
+                React.createElement(Main, null), 
+                React.createElement(Bottom, null)
+            )
+        );
+    }
+});
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./BottomSingle.jsx":161,"./HeadSingle.jsx":163,"./MainSingle.jsx":166}],169:[function(require,module,exports){
 (function (global){
 /**
  * Created by Donghui Huo on 2015/8/5.
@@ -24020,16 +24226,22 @@ var React = global.React = require('react');
 var Zepto = global.$ = $ = require('zepto-browserify').Zepto;
 var hammer =  global.hammer = require('hammerjs');
 var $picture = global.$picture = require("../../picture-mobile.js");
+var cookie = require('cookie-dough')();
 $(document).ready(function () {
-    if (!$("body").hasClass("single")) {
-        $picture.showHideLeftBind();
+    if (!cookie.get("single")) {
+        if (cookie.get("username")) {
+            $(document.body).addClass("login");
+        }
+        var Multi = require("./Multi.jsx");
+        React.render(React.createElement(Multi, null),document.body);
     } else {
-        $picture.showHideBarBind();
-        $picture.swipeImgEventAdd(document.querySelector(".main-img"));
+        var Single = require("./Single.jsx");
+        $(document.body).addClass("single");
+        React.render(React.createElement(Single, null),document.body);
     }
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../picture-mobile.js":162,"hammerjs":4,"react":159,"zepto-browserify":160}],162:[function(require,module,exports){
+},{"../../picture-mobile.js":170,"./Multi.jsx":167,"./Single.jsx":168,"cookie-dough":2,"hammerjs":4,"react":159,"zepto-browserify":160}],170:[function(require,module,exports){
 (function (global){
 /**
  * Created by Donghui Huo on 2015/8/5.
@@ -24153,7 +24365,7 @@ module.exports = (function ($, window, undefined) {
                 $(ev.target).next().addClass("slideInRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     $(this).removeClass("main-img-right").removeClass("slideInRight").addClass("main-img");
                     if (!$(this).next()[0]) {
-                        $('<img class="main-img-right animated-fast" src="pictures/big4.jpg">').insertAfter($(this));
+                        $('<img class="main-img-right animated-fast" draggable="false" src="pictures/big4.jpg">').insertAfter($(this));
                     }
                     $picture.swipeImgEventAdd(this);
                 });
@@ -24170,7 +24382,7 @@ module.exports = (function ($, window, undefined) {
                 $(ev.target).prev().addClass("slideInLeft").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     $(this).removeClass("main-img-left").removeClass("slideInLeft").addClass("main-img");
                     if (!$(this).prev()[0]) {
-                        $('<img class="main-img-left animated-fast" src="pictures/big4.jpg">').insertBefore($(this));
+                        $('<img class="main-img-left animated-fast" draggable="false" src="pictures/big4.jpg">').insertBefore($(this));
                     }
                     $picture.swipeImgEventAdd(this);
                 });
@@ -24200,4 +24412,4 @@ module.exports = (function ($, window, undefined) {
 })(global.$, window);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cookie-dough":2}]},{},[161]);
+},{"cookie-dough":2}]},{},[169]);
