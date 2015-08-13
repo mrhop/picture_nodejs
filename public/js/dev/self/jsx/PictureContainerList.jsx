@@ -31,7 +31,7 @@ module.exports = React.createClass({
             return (
                 <PictureContainer key={picture._id} title={picture.title} createuser={picture.create_user}
                                   capturedate={picture.capture_date} tag={picture.tag} desc={picture.desc}
-                                  imgurl={picture.img_url}
+                                  imgurl={picture.img_url} thumbbigurl={picture.thumb_big_url}
                                   heartusers={picture.heart_users}
                                   upusers={picture.up_users} uptimes={picture.up_times} id={picture._id} />
             );

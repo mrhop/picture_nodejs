@@ -14,7 +14,7 @@ module.exports = (function ($, window, undefined) {
             dataType: 'json',
             success: function (data) {
                 _this.setData(data);
-                if(!cookie.get("username")){
+                if (!cookie.get("username")) {
                     $(".glyphicon-log-in").show();
                     $(".glyphicon-log-out").hide();
                     $("#addPic").hide();
@@ -33,7 +33,7 @@ module.exports = (function ($, window, undefined) {
         xhr: null,
         fileDataFinal: null,
         tagContainer: null,
-        dataTag:[],
+        dataTag: [],
         init: function () {
             $(".pic-container-a").colorbox({
                 rel: 'pic-container-a',
@@ -41,14 +41,14 @@ module.exports = (function ($, window, undefined) {
                 current: '{current}/{total}'
             });
         },
-        postRequest:function(){
+        postRequest: function () {
             var _this = this;
             $.post(_this.urlNow, _this.getKeywords(), function (data) {
                 _this.setData(data);
-                _this.picContainer.setState({data: _this.dataPic},function(){
+                _this.picContainer.setState({data: _this.dataPic}, function () {
                     _this.reload();
                 });
-                if(!cookie.get("username")){
+                if (!cookie.get("username")) {
                     $(".glyphicon-log-in").show();
                     $(".glyphicon-log-out").hide();
                     $("#addPic").hide();
@@ -97,16 +97,20 @@ module.exports = (function ($, window, undefined) {
             var start = cookie.get('start');
             if (!start || start == 'null') {
                 if (this.urlNow == "/pictures" || !this.urlNow) {
-                    cookie.set("start", 0,{ maxAge:7200, secure: false,httpOnly:false});
+                    cookie.set("start", 0, {maxAge: 7200, secure: false, httpOnly: false});
                 } else {
-                    cookie.set("start", (!this.dataPic || this.dataPic.length == 0) ? 0 : this.dataPic.length - 1,{ maxAge:7200, secure: false,httpOnly:false});
+                    cookie.set("start", (!this.dataPic || this.dataPic.length == 0) ? 0 : this.dataPic.length - 1, {
+                        maxAge: 7200,
+                        secure: false,
+                        httpOnly: false
+                    });
                 }
             } else {
-                cookie.set("start", Number(start) + 5,{ maxAge:7200, secure: false,httpOnly:false});
+                cookie.set("start", Number(start) + 5, {maxAge: 7200, secure: false, httpOnly: false});
             }
             var limitnum = cookie.get("limitnum");
             if (limitnum == 'null' || !limitnum) {
-                cookie.set("limitnum", 5,{ maxAge:7200, secure: false,httpOnly:false});
+                cookie.set("limitnum", 5, {maxAge: 7200, secure: false, httpOnly: false});
             }
             var _this = this;
             $.post(this.urlNow, this.getKeywords(), function (data) {
@@ -115,7 +119,7 @@ module.exports = (function ($, window, undefined) {
                     _this.reload();
                     $(".bottom .more-pic h4").text("加载更多......");
                     _this.loaded = true;
-                    if(!cookie.get("username")){
+                    if (!cookie.get("username")) {
                         $(".glyphicon-log-in").show();
                         $(".glyphicon-log-out").hide();
                         $("#addPic").hide();
@@ -136,29 +140,34 @@ module.exports = (function ($, window, undefined) {
         getLoginData: function () {
             var username = $("#username").val();
             var password = $("#password").val();
-            if (username==null||username.trim()== "") {
+            if (username == null || username.trim() == "") {
                 $("#username").focus();
                 alert("用户名不能为空");
                 return false;
             }
-            if (password==null||password.trim()== "") {
+            if (password == null || password.trim() == "") {
                 $("#password").focus();
                 alert("密码不能为空");
                 return false;
             }
-            return {"username":username,"password":password};
+            return {"username": username, "password": password};
         },
         compressImg: function (source_img_obj, quality, output_format) {
             var mime_type = "image/jpeg";
             var cvs = document.createElement('canvas');
             cvs.width = source_img_obj.naturalWidth;
             cvs.height = source_img_obj.naturalHeight;
-            if (source_img_obj.naturalWidth / 1024 > source_img_obj.naturalHeight / 768) {
-                cvs.width = 1024;
-                cvs.height = parseInt(source_img_obj.naturalHeight * 1024 / source_img_obj.naturalWidth);
+            if (source_img_obj.naturalWidth <= 1024 && source_img_obj.naturalHeight <= 768) {
+                cvs.width = source_img_obj.naturalWidth;
+                cvs.height = source_img_obj.naturalHeight;
             } else {
-                cvs.height = 768;
-                cvs.width = parseInt(source_img_obj.naturalWidth * 768 / source_img_obj.naturalHeight);
+                if (source_img_obj.naturalWidth / 1024 > source_img_obj.naturalHeight / 768) {
+                    cvs.width = 1024;
+                    cvs.height = parseInt(source_img_obj.naturalHeight * 1024 / source_img_obj.naturalWidth);
+                } else {
+                    cvs.height = 768;
+                    cvs.width = parseInt(source_img_obj.naturalWidth * 768 / source_img_obj.naturalHeight);
+                }
             }
             if (typeof output_format !== "undefined" && output_format == "png") {
                 mime_type = "image/png";

@@ -24049,7 +24049,7 @@ module.exports = React.createClass({displayName: "exports",
     render: function () {
         return (
             React.createElement("div", {className: "header"}, 
-                React.createElement("a", {className: "left-a animated"}, 
+                React.createElement("a", {className: "left-a animated-fast"}, 
                     React.createElement("span", {className: "glyphicon glyphicon-th-list"}), " ", 
                     React.createElement("img", {className: "top-logo", src: "images/logo.png"})
                 ), 

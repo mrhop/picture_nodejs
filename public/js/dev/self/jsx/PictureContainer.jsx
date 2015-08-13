@@ -75,7 +75,7 @@ module.exports = React.createClass({
         return (
             <div className="pic-container">
                 <a className="pic-container-a" title={title} href={this.props.imgurl}>
-                    <img src={this.props.imgurl}/>
+                    <img src={this.props.thumbbigurl}/>
                 </a>
 
                 <div className="desc">

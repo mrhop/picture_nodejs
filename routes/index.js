@@ -4,9 +4,12 @@ var multiparty = require('multiparty');
 var db = require('../common/db');
 var fs = require('fs');
 var md5 = require('md5');
-var extend = require('util')._extend
+var extend = require('util')._extend;
 var concat = require('unique-concat');
+var easyimg = require('easyimage');
 var mobileRegex = /.*AppleWebKit.*Mobile.*/gi;
+var thumbnailBigSize = 300;
+var thumbnailSize = 200;
 require('date-utils');
 var array = require("array-extended");
 var pic_select = {
@@ -16,6 +19,8 @@ var pic_select = {
     up_users: 1,
     heart_users: 1,
     img_url: 1,
+    thumb_big_url: 1,
+    thumb_url: 1,
     create_user: 1,
     capture_date: 1,
     up_times: 1
@@ -42,9 +47,6 @@ router.get('/mobile', function (req, res, next) {
     res.clearCookie("dateType", {maxAge: -1, httpOnly: false});
     res.clearCookie("limitnum", {maxAge: -1, httpOnly: false});
     res.clearCookie("start", {maxAge: -1, httpOnly: false});
-    res.cookie('username', "abc", {maxAge: 7200000, httpOnly: false});
-    res.clearCookie("single", {maxAge: -1, httpOnly: false});
-    //res.cookie('single', "abc", {maxAge: 7200000, httpOnly: false});
     res.render('mobile');
 });
 //慢慢需要加上每年年表
@@ -337,46 +339,101 @@ router.post('/pictures/upload', function (req, res, next) {
                 }
                 //进行存储files[key][0].path.replace(/\\/g,"/")
                 fs.readFile(files[key][0].path.replace(/\\/g, "/"), function (err, bytesRead) {
-                    if (err) throw err;
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
                     //write
                     //文件名称前面应该加上添加人信息
                     var date = new Date();
-                    var filename = date.valueOf() + "-" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + "-" + bytesRead.length + "." + fileEnd;
+                    var filenamePrepend = date.valueOf() + "-" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + "-" + bytesRead.length;
+                    var filename = filenamePrepend + "." + fileEnd;
+                    var thumbnailBigName = filenamePrepend + '-big-thumbnail.' + fileEnd;
+                    var thumbnailName = filenamePrepend + '-thumbnail.' + fileEnd;
                     fs.writeFile("./public/pictures/" + filename, bytesRead, function (err) {
-                        if (err) throw err;
-                        var picture = new db.Picture();
-                        for (var key in fields) {
-                            if (key == "capturedate") {
-                                if (fields[key][0] != "") {
-                                    picture.set("capture_date", new Date(Date.parse(fields[key][0], "yyyy-M-dd")));
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+                        easyimg.info(__dirname + '\\..\\public\\pictures\\' + filename).then(function (info) {
+                                var cropX = 0;
+                                var cropY = 0;
+                                var width = thumbnailSize;
+                                var height = thumbnailSize;
+                                var bigwidth = thumbnailBigSize;
+                                var bigheight = thumbnailBigSize;
+                                if (info.width >= info.height) {
+                                    cropX = thumbnailSize * (info.width / info.height - 1) / 2;
+                                    width = info.width;
+                                    bigwidth = width;
                                 } else {
-                                    picture.set("capture_date", new Date());
+                                    cropY = thumbnailSize * (info.height / info.width - 1) / 2;
+                                    height = info.height;
+                                    bigheight = info.height;
                                 }
-                            } else if (key == "isrecommend") {
-                                picture.set("is_recommend", true);
-                            } else {
-                                picture.set(key, fields[key]);
+                                easyimg.rescrop({
+                                    src: __dirname + '\\..\\public\\pictures\\' + filename,
+                                    dst: __dirname + '\\..\\public\\pictures\\thumbnails\\' + thumbnailBigName,
+                                    width: bigwidth,
+                                    height: bigheight
+                                }).then(
+                                    easyimg.rescrop({
+                                        src: __dirname + '\\..\\public\\pictures\\' + filename,
+                                        dst: __dirname + '\\..\\public\\pictures\\thumbnails\\' + thumbnailName,
+                                        width: width,
+                                        height: height,
+                                        cropwidth: thumbnailSize,
+                                        cropheight: thumbnailSize,
+                                        x: cropX,
+                                        y: cropY
+                                    }).then(
+                                        function (image) {
+                                            var picture = new db.Picture();
+                                            for (var key in fields) {
+                                                if (key == "capturedate") {
+                                                    if (fields[key][0] != "") {
+                                                        picture.set("capture_date", new Date(Date.parse(fields[key][0], "yyyy-M-dd")));
+                                                    } else {
+                                                        picture.set("capture_date", new Date());
+                                                    }
+                                                } else if (key == "isrecommend") {
+                                                    picture.set("is_recommend", true);
+                                                } else {
+                                                    picture.set(key, fields[key]);
+                                                }
+                                            }
+                                            if (!picture.get("tag")) {
+                                                picture.set("tag", []);
+                                            }
+                                            if (!picture.get("is_recommend")) {
+                                                picture.set("is_recommend", false);
+                                            }
+                                            picture.set("up_times", 0);
+                                            picture.set("up_users", []);
+                                            picture.set("heart_times", 1);
+                                            picture.set("is_hide", false);
+                                            //此处需要根据用户进行处理
+                                            picture.set("heart_users", [req.session.user.user_name]);
+                                            //此处需要根据用户进行处理
+                                            picture.set("create_user", req.session.user.user_name);
+                                            //需要根据图片不同的存储位置进行设置
+                                            picture.set("img_url", "pictures/" + filename);
+                                            picture.set("thumb_big_url", "pictures/thumbnails/" + thumbnailBigName);
+                                            picture.set("thumb_url", "pictures/thumbnails/" + thumbnailName);
+                                            picture.save();
+                                            console.log('It\'s saved!');
+                                            //此处进行数据库的插入操作
+                                        },
+                                        function (err) {
+                                            console.log(err);
+                                        }
+                                    ),
+                                    function (err) {
+                                        console.log(err);
+                                    });
                             }
-                        }
-                        if (!picture.get("tag")) {
-                            picture.set("tag", []);
-                        }
-                        if (!picture.get("is_recommend")) {
-                            picture.set("is_recommend", false);
-                        }
-                        picture.set("up_times", 0);
-                        picture.set("up_users", []);
-                        picture.set("heart_times", 1);
-                        picture.set("is_hide", false);
-                        //此处需要根据用户进行处理
-                        picture.set("heart_users", [req.session.user.user_name]);
-                        //此处需要根据用户进行处理
-                        picture.set("create_user", req.session.user.user_name);
-                        //需要根据图片不同的存储位置进行设置
-                        picture.set("img_url", "pictures/" + filename);
-                        picture.save();
-                        console.log('It\'s saved!');
-                        //此处进行数据库的插入操作
+                        )
+
                     })
                 });
             }

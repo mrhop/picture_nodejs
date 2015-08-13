@@ -9,7 +9,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div className="header">
-                <a className="left-a animated">
+                <a className="left-a animated-fast">
                     <span className="glyphicon glyphicon-th-list"></span>&nbsp;
                     <img className="top-logo" src="images/logo.png" />
                 </a>

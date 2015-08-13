@@ -20,6 +20,8 @@ var Picture = mongoose.model('pictureTab', {
     tag: [{type: String}],
     desc: String,
     img_url: String,
+    thumb_big_url:String,
+    thumb_url:String,
     up_users:[{type: String}],
     up_times: Number,
     heart_users:[{type: String}],
