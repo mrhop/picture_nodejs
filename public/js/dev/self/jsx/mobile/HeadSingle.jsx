@@ -28,8 +28,8 @@ module.exports = React.createClass({
         return (
             <div className="header animated-fast">
                 <global.Hammer onTap={this.handleBack} component="a"
-                               className="glyphicon glyphicon-arrow-left"/>&nbsp;
-                <span id="picCount">{picCount}</span>
+                               className="glyphicon glyphicon-arrow-left"><span id="picCount">{picCount}</span>
+                </global.Hammer>
                 <span style={{float:"right"}}>
                     <a className="glyphicon glyphicon-download-alt" href={picCurrent.img_url} download={imgName}></a>
                 </span>

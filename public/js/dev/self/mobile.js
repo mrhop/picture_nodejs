@@ -24285,8 +24285,8 @@ module.exports = React.createClass({displayName: "exports",
         return (
             React.createElement("div", {className: "header animated-fast"}, 
                 React.createElement(global.Hammer, {onTap: this.handleBack, component: "a", 
-                               className: "glyphicon glyphicon-arrow-left"}), " ", 
-                React.createElement("span", {id: "picCount"}, picCount), 
+                               className: "glyphicon glyphicon-arrow-left"}, React.createElement("span", {id: "picCount"}, picCount)
+                ), 
                 React.createElement("span", {style: {float:"right"}}, 
                     React.createElement("a", {className: "glyphicon glyphicon-download-alt", href: picCurrent.img_url, download: imgName})
                 )
