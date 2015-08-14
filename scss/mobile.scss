@@ -4,6 +4,7 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
 @import "compass/css3";
+
 * {
   //outline: 1px dotted red;
 }
@@ -373,7 +374,11 @@ a {
   cursor: pointer;
 }
 
-/*a:hover, a:active, */a.selected {
+a:hover, a:active {
+  text-decoration: none;
+}
+
+a.selected {
   color: rgb(104, 176, 232);
   text-decoration: none;
 }
@@ -568,10 +573,12 @@ form.not-login-form input:focus {
   border: 1px solid rgb(104, 176, 232);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-#errormessage{
+
+#errormessage {
   color: red;
   font-size: 12px;
 }
+
 form.not-login-form .login-p {
   overflow: hidden;
   padding-right: 25%;
@@ -595,21 +602,25 @@ div.left-inner > a {
   vertical-align: middle;
 }
 
-/*div.left-inner > a:hover, div.left-inner > a:active,*/ div.left-inner > a.selected {
+/*div.left-inner > a:hover, div.left-inner > a:active,*/
+div.left-inner > a.selected {
   color: #444;
   background-color: rgba(104, 176, 232, 0.4);
   @include box-shadow(1px 0px 8px -2px #0b1621);
 }
 
-/* div.left-inner > a:hover .glyphicon-leaf,div.left-inner > a:active .glyphicon-leaf,*/ div.left-inner > a.selected .glyphicon-leaf {
+/* div.left-inner > a:hover .glyphicon-leaf,div.left-inner > a:active .glyphicon-leaf,*/
+div.left-inner > a.selected .glyphicon-leaf {
   color: #bddd22;
 }
 
-/* div.left-inner > a:hover .glyphicon-fire, div.left-inner > a:active .glyphicon-fire,*/ div.left-inner > a.selected .glyphicon-fire {
+/* div.left-inner > a:hover .glyphicon-fire, div.left-inner > a:active .glyphicon-fire,*/
+div.left-inner > a.selected .glyphicon-fire {
   color: #ff2d51;
 }
 
-/*div.left-inner > a:hover .glyphicon-heart,div.left-inner > a:active .glyphicon-heart,*/ div.left-inner > a.selected .glyphicon-heart {
+/*div.left-inner > a:hover .glyphicon-heart,div.left-inner > a:active .glyphicon-heart,*/
+div.left-inner > a.selected .glyphicon-heart {
   color: #ff2121;
 }
 
@@ -645,8 +656,8 @@ div.picture-container a.glyphicon-thumbs-up {
 }
 
 div.picture-container a.glyphicon-heart {
-   left: 5px;
- }
+  left: 5px;
+}
 
 div.picture-container a.glyphicon-heart.selected {
   color: #ff2121;
@@ -696,7 +707,7 @@ a.more-pic {
   padding: 10px 5px;
 }
 
-a.more-pic h4{
+a.more-pic h4 {
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -705,7 +716,6 @@ a.more-pic h4{
   background-color: rgb(104, 176, 232);
   color: white;
 }*/
-
 
 //单页部分
 body.single {
@@ -732,11 +742,11 @@ body.single .header .glyphicon-arrow-left {
   margin-left: 4px;
   display: inline-block;
 }
+
 body.single .header .glyphicon-download-alt {
   margin-right: 4px;
   display: inline-block;
 }
-
 
 body.single .page {
   padding-top: 0;
@@ -778,11 +788,13 @@ body.single .bottom p {
   margin: 5px auto 5px auto;
 }
 
-/*body.single .bottom .glyphicon-heart:hover, body.single .bottom .glyphicon-heart:active,*/ body.single .bottom .glyphicon-heart.selected {
+/*body.single .bottom .glyphicon-heart:hover, body.single .bottom .glyphicon-heart:active,*/
+body.single .bottom .glyphicon-heart.selected {
   color: #ff2121;
 }
 
-/*body.single .bottom span.left a:hover, body.single .bottom span.left a:active,*/ body.single .bottom span.left a.selected {
+/*body.single .bottom span.left a:hover, body.single .bottom span.left a:active,*/
+body.single .bottom span.left a.selected {
   color: #fff;
 }
 
