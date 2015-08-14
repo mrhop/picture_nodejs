@@ -7,7 +7,7 @@ module.exports = React.createClass({
         cookie.set("start", '', {maxAge: -1});
         cookie.set("limitnum", '', {maxAge: -1});
         $picture.postRequest();
-        $picture.showOrHideLeftMenu();
+        $picture.showOrHideSearch();
         e.preventDefault();
     },
     handleTap: function () {

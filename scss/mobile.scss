@@ -681,8 +681,8 @@ div.picture-container a.glyphicon-thumbs-up span, div.picture-container a.glyphi
   margin-top: 80px;
   margin-bottom: 80px;
   height: 10px;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid rgb(104, 176, 232);
+  border-bottom: 1px solid rgb(104, 176, 232);
   width: 100%;
   text-align: center;
 }
@@ -702,7 +702,7 @@ a.more-pic {
   margin-top: -20px;
   width: 100%;
   min-width: 100px;
-  background-color: white;
+  background-color: rgb(104, 176, 232);
   color: #555555;
   padding: 10px 5px;
 }
@@ -813,11 +813,16 @@ body.single .bottom-tool .left a {
   border: 1px solid #fff;
   border-radius: 4px;
   margin-bottom: 5px;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 body.single .bottom-tool .right {
   float: right;
+  font-size: 18px;
+}
+
+body.single .bottom-tool .right .glyphicon{
+  padding: 5px;
 }
 
 body.single .bottom-tool .right .glyphicon-thumbs-up {

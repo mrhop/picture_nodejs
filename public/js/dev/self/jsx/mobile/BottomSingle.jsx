@@ -1,6 +1,7 @@
 /**
  * Created by Donghui Huo on 2015/7/16.
  */
+var upInterval = 10000;
 module.exports = React.createClass({
     handleHeart: function (event) {
         if ($picture.heart_animate_finish_flag) {
@@ -8,6 +9,7 @@ module.exports = React.createClass({
             $("#errormessage").text("");
             if (!cookie.get("username")) {
                 $("#errormessage").text("请登录后操作");
+                $picture.heart_animate_finish_flag = true;
                 return;
             }
             var data = {};
@@ -21,6 +23,18 @@ module.exports = React.createClass({
             $.post("/heart", data, function (data) {
                 if (!data.success) {
                     $("#errormessage").text("请登录后操作");
+                } else {
+                    var pic = $picture.dataPic[$picture.currentPictureIndex];
+                    var username = cookie.get("username");
+                    pic.heart_users.indexOf(username);
+                    var index = pic.heart_users.indexOf(username);
+                    if (index > -1) {
+                        pic.heart_users.splice(index, 1);
+                        pic.heart_times = pic.heart_times - 1;
+                    } else {
+                        pic.heart_users[pic.heart_users.length] = cookie.get("username");
+                        pic.heart_times = pic.heart_times + 1;
+                    }
                 }
                 $picture.heart_animate_finish_flag = true;
             });
@@ -34,7 +48,9 @@ module.exports = React.createClass({
                 if (!data.success) {
                     $picture.postRequest();
                 } else {
+                    var pic = $picture.dataPic[$picture.currentPictureIndex];
                     cookie.set("dateUp", new Date(), {maxAge: 7200, secure: false, httpOnly: false});
+                    pic.up_times = pic.up_times + 1;
                 }
             });
         } else {

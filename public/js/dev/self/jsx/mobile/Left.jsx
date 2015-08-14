@@ -9,6 +9,7 @@ module.exports = React.createClass({
                 if (data.success) {
                     //登陆成功，隐藏登录按钮，补充注销按钮
                     $(document.body).addClass("login");
+                    $picture.showOrHideLeftMenu();
                     $picture.postRequest();
                 } else {
                     $("#errormessage").text("用户名/密码错误");
@@ -22,6 +23,7 @@ module.exports = React.createClass({
         $.get("/logout", function (data) {
             if (data.success) {
                 $(document.body).removeClass("login");
+                $picture.showOrHideLeftMenu();
                 $picture.postRequest();
             }
             e.preventDefault();

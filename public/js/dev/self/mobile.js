@@ -24112,6 +24112,7 @@ exports.$ = window.$
 /**
  * Created by Donghui Huo on 2015/7/16.
  */
+var upInterval = 10000;
 module.exports = React.createClass({displayName: "exports",
     handleHeart: function (event) {
         if ($picture.heart_animate_finish_flag) {
@@ -24119,6 +24120,7 @@ module.exports = React.createClass({displayName: "exports",
             $("#errormessage").text("");
             if (!cookie.get("username")) {
                 $("#errormessage").text("请登录后操作");
+                $picture.heart_animate_finish_flag = true;
                 return;
             }
             var data = {};
@@ -24132,6 +24134,18 @@ module.exports = React.createClass({displayName: "exports",
             $.post("/heart", data, function (data) {
                 if (!data.success) {
                     $("#errormessage").text("请登录后操作");
+                } else {
+                    var pic = $picture.dataPic[$picture.currentPictureIndex];
+                    var username = cookie.get("username");
+                    pic.heart_users.indexOf(username);
+                    var index = pic.heart_users.indexOf(username);
+                    if (index > -1) {
+                        pic.heart_users.splice(index, 1);
+                        pic.heart_times = pic.heart_times - 1;
+                    } else {
+                        pic.heart_users[pic.heart_users.length] = cookie.get("username");
+                        pic.heart_times = pic.heart_times + 1;
+                    }
                 }
                 $picture.heart_animate_finish_flag = true;
             });
@@ -24145,7 +24159,9 @@ module.exports = React.createClass({displayName: "exports",
                 if (!data.success) {
                     $picture.postRequest();
                 } else {
+                    var pic = $picture.dataPic[$picture.currentPictureIndex];
                     cookie.set("dateUp", new Date(), {maxAge: 7200, secure: false, httpOnly: false});
+                    pic.up_times = pic.up_times + 1;
                 }
             });
         } else {
@@ -24207,7 +24223,7 @@ module.exports = React.createClass({displayName: "exports",
         cookie.set("start", '', {maxAge: -1});
         cookie.set("limitnum", '', {maxAge: -1});
         $picture.postRequest();
-        $picture.showOrHideLeftMenu();
+        $picture.showOrHideSearch();
         e.preventDefault();
     },
     handleTap: function () {
@@ -24254,21 +24270,22 @@ module.exports = React.createClass({displayName: "exports",
         } else {
             $(document.body).removeClass("login");
         }
-        if(!$picture.MultiPage){
+        if (!$picture.MultiPage) {
             var Multi = require("./Multi.jsx");
             $picture.MultiPage = React.createElement(Multi, null);
         }
         React.render($picture.MultiPage, document.body);
+
     },
     render: function () {
-        var picCount = ($picture.currentPictureIndex+1)+"/"+$picture.dataPic.length;
+        var picCount = ($picture.currentPictureIndex + 1) + "/" + $picture.dataPic.length;
         var picCurrent = $picture.dataPic[$picture.currentPictureIndex];
         var img_urls = picCurrent.img_url.split("/");
-        var imgName = img_urls[img_urls.length-1];
+        var imgName = img_urls[img_urls.length - 1];
         return (
             React.createElement("div", {className: "header animated-fast"}, 
                 React.createElement(global.Hammer, {onTap: this.handleBack, component: "a", 
-                               className: "glyphicon glyphicon-arrow-left"}), 
+                               className: "glyphicon glyphicon-arrow-left"}), " ", 
                 React.createElement("span", {id: "picCount"}, picCount), 
                 React.createElement("span", {style: {float:"right"}}, 
                     React.createElement("a", {className: "glyphicon glyphicon-download-alt", href: picCurrent.img_url, download: imgName})
@@ -24291,6 +24308,7 @@ module.exports = React.createClass({displayName: "exports",
                 if (data.success) {
                     //登陆成功，隐藏登录按钮，补充注销按钮
                     $(document.body).addClass("login");
+                    $picture.showOrHideLeftMenu();
                     $picture.postRequest();
                 } else {
                     $("#errormessage").text("用户名/密码错误");
@@ -24304,6 +24322,7 @@ module.exports = React.createClass({displayName: "exports",
         $.get("/logout", function (data) {
             if (data.success) {
                 $(document.body).removeClass("login");
+                $picture.showOrHideLeftMenu();
                 $picture.postRequest();
             }
             e.preventDefault();
@@ -24402,6 +24421,9 @@ module.exports = React.createClass({displayName: "exports",
         return {data: $picture.dataPic};
     },
     getMorePic: function (e) {
+        if ($("#header-form .glyphicon-search").css("display") == "none") {
+            $picture.showOrHideSearch();
+        }
         if ($picture.loaded == true) {
             $picture.loadImage();
         }
@@ -24420,7 +24442,8 @@ module.exports = React.createClass({displayName: "exports",
                 pictureContainers, 
                 React.createElement("div", {className: "bottom"}, 
                     React.createElement("div", {className: "showMorePic"}, 
-                        React.createElement(global.Hammer, {onTap: this.getMorePic, component: "a", className: "more-pic"}, React.createElement("h4", null, "加载更多......"))
+                        React.createElement(global.Hammer, {onTap: this.getMorePic, component: "a", className: "more-pic"}, React.createElement("h4", null, "加载更多")
+                        )
                     )
                 )
             )

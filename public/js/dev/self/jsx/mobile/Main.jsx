@@ -8,6 +8,9 @@ module.exports = React.createClass({
         return {data: $picture.dataPic};
     },
     getMorePic: function (e) {
+        if ($("#header-form .glyphicon-search").css("display") == "none") {
+            $picture.showOrHideSearch();
+        }
         if ($picture.loaded == true) {
             $picture.loadImage();
         }
@@ -26,7 +29,8 @@ module.exports = React.createClass({
                 {pictureContainers}
                 <div className="bottom">
                     <div className="showMorePic">
-                        <global.Hammer onTap={this.getMorePic} component="a" className="more-pic"><h4>加载更多......</h4></global.Hammer>
+                        <global.Hammer onTap={this.getMorePic} component="a" className="more-pic"><h4>加载更多</h4>
+                        </global.Hammer>
                     </div>
                 </div>
             </div>

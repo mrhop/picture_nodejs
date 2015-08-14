@@ -13,21 +13,22 @@ module.exports = React.createClass({
         } else {
             $(document.body).removeClass("login");
         }
-        if(!$picture.MultiPage){
+        if (!$picture.MultiPage) {
             var Multi = require("./Multi.jsx");
             $picture.MultiPage = <Multi />;
         }
         React.render($picture.MultiPage, document.body);
+
     },
     render: function () {
-        var picCount = ($picture.currentPictureIndex+1)+"/"+$picture.dataPic.length;
+        var picCount = ($picture.currentPictureIndex + 1) + "/" + $picture.dataPic.length;
         var picCurrent = $picture.dataPic[$picture.currentPictureIndex];
         var img_urls = picCurrent.img_url.split("/");
-        var imgName = img_urls[img_urls.length-1];
+        var imgName = img_urls[img_urls.length - 1];
         return (
             <div className="header animated-fast">
                 <global.Hammer onTap={this.handleBack} component="a"
-                               className="glyphicon glyphicon-arrow-left"/>
+                               className="glyphicon glyphicon-arrow-left"/>&nbsp;
                 <span id="picCount">{picCount}</span>
                 <span style={{float:"right"}}>
                     <a className="glyphicon glyphicon-download-alt" href={picCurrent.img_url} download={imgName}></a>
