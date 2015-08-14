@@ -23,6 +23,7 @@ var pic_select = {
     thumb_url: 1,
     create_user: 1,
     capture_date: 1,
+    heart_times:1,
     up_times: 1
 };
 function handleError(res, err) {
@@ -545,6 +546,22 @@ router.post('/heart', function (req, res, next) {
 });
 
 router.post('/up', function (req, res, next) {
+    //获取json数据
+    db.Picture.findOne({_id: req.body.id}).exec(function (e, doc) {
+        if (e) {
+            return handleError(res, error);
+        }
+        var sess = req.session;
+        if (sess.user && doc.up_users.indexOf(sess.user.user_name) < 0) {
+            doc.up_users = concat(doc.up_users, [sess.user.user_name]);
+        }
+        doc.up_times = doc.up_times + 1;
+        doc.save();
+    });
+    res.send({"success": true});
+})
+
+router.post('/single', function (req, res, next) {
     //获取json数据
     db.Picture.findOne({_id: req.body.id}).exec(function (e, doc) {
         if (e) {

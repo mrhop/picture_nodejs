@@ -42,6 +42,7 @@
     "morgan": "^1.6.1",
     "multiparty": "^4.1.2",
     "react": "^0.13.3",
+    "react-hammerjs": "^0.2.2",
     "react-masonry-mixin": "^1.0.0",
     "serve-favicon": "~2.2.1",
     "through": "^2.3.8",

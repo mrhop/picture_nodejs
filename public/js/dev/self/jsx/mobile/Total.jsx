@@ -4,18 +4,24 @@
 var React = global.React = require('react');
 var Zepto = global.$ = $ = require('zepto-browserify').Zepto;
 var hammer =  global.hammer = require('hammerjs');
+var Hammer = global.Hammer =  require('react-hammerjs');
 var $picture = global.$picture = require("../../picture-mobile.js");
-var cookie = require('cookie-dough')();
+var cookie = global.cookie = require('cookie-dough')();
 $(document).ready(function () {
     if (!cookie.get("single")) {
+        $(document.body).removeClass("single");
         if (cookie.get("username")) {
             $(document.body).addClass("login");
+        }else{
+            $(document.body).removeClass("login");
         }
         var Multi = require("./Multi.jsx");
-        React.render(<Multi />,document.body);
+        $picture.MultiPage = <Multi />;
+        React.render($picture.MultiPage,document.body);
     } else {
-        var Single = require("./Single.jsx");
         $(document.body).addClass("single");
-        React.render(<Single />,document.body);
+        var Single = require("./Single.jsx");
+        $picture.SinglePage = <Single />;
+        React.render($picture.SinglePage,document.body);
     }
 });

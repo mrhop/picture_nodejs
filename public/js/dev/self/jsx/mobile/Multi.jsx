@@ -8,18 +8,21 @@ module.exports = React.createClass({
     getInitialState: function () {
         return null;
     },
-    componentDidMount:function(){
-        global.$picture.showHideLeftBind();
+    handleSwipe: function () {
+        if ($("div.left-back-mask").css("display") == "none") {
+            $picture.showOrHideLeftMenu();
+        }
+        return false;
     },
     render: function () {
         return (
             <div>
                 <Head />
-                <div className="page">
+                <global.Hammer onSwipe={this.handleSwipe} options ={{recognizers:{swipe:{direction:4}}}}  component="div"  className="page" >
                     <Left />
                     <Main/>
-                </div>
-            </div>
+                </global.Hammer>
+            </div> 
         );
     }
 });

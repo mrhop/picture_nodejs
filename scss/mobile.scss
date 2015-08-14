@@ -566,7 +566,10 @@ form.not-login-form input:focus {
   border: 1px solid rgb(104, 176, 232);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-
+#errormessage{
+  color: red;
+  font-size: 12px;
+}
 form.not-login-form .login-p {
   overflow: hidden;
   padding-right: 25%;
@@ -612,11 +615,8 @@ div.main {
   width: 100%;
   padding-top: 5px;
   @include display-flex(flex);
-  @include justify-content(center);
+  @include justify-content(space-around);
   @include flex-wrap(wrap);
-  //display: flex;
-  //justify-content: center;
- // flex-wrap: wrap;
 }
 
 div.main .picture-container {
@@ -649,6 +649,51 @@ div.picture-container a.glyphicon-heart {
 div.picture-container a.glyphicon-thumbs-up span, div.picture-container a.glyphicon-heart span {
   padding-left: 4px;
 }
+
+.main .bottom {
+  margin-top: 80px;
+  margin-bottom: 120px;
+  height: 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  width: 100%;
+  text-align: center;
+}
+
+.main .bottom {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  height: 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  width: 100%;
+  text-align: center;
+}
+
+.main .bottom > div {
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #edece9;
+}
+
+a.more-pic {
+  text-decoration: none;
+  display: block;
+  margin-top: -35px;
+  width: 100%;
+  background-color: white;
+  color: #555555;
+  padding: 10px 5px;
+}
+
+a.more-pic:hover, a.more-pic:active {
+  background-color: rgb(104, 176, 232);
+  color: white;
+}
+
 
 //单页部分
 body.single {
@@ -712,7 +757,7 @@ body.single .main-img-right {
   margin-right: -100%;
 }
 
-body.single .bottom {
+body.single div.bottom {
   position: fixed;
   left: 0;
   bottom: 0;

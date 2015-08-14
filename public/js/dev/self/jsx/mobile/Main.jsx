@@ -1,21 +1,34 @@
 /**
  * Created by Donghui Huo on 2015/7/16.
  */
+var PictureContainer = require("./PictureContainer.jsx");
 module.exports = React.createClass({
-    handleSubmit: function () {
-        console.log("right");
-        return false;
+    getInitialState: function () {
+        $picture.picContainer = this;
+        return {data: $picture.dataPic};
+    },
+    getMorePic: function (e) {
+        if ($picture.loaded == true) {
+            $picture.loadImage();
+        }
+        e.preventDefault();
     },
     render: function () {
+        var pictureContainers = this.state.data.map(function (picture) {
+            return (
+                <PictureContainer key={picture._id}
+                                  thumburl={picture.thumb_url}
+                                  hearttimes={picture.heart_times} uptimes={picture.up_times} id={picture._id}/>
+            );
+        });
         return (
             <div className="main">
-                <div className="picture-container">
-                    <img src="pictures/1.jpg" draggable="false"/>
-                    <a className="glyphicon glyphicon-heart"><span>12</span></a>
-                    <a className="glyphicon glyphicon-thumbs-up"><span>12</span></a>
+                {pictureContainers}
+                <div className="bottom">
+                    <div className="showMorePic">
+                        <global.Hammer onTap={this.getMorePic} component="a" className="more-pic"><h4>加载更多......</h4></global.Hammer>
+                    </div>
                 </div>
-                <div className="picture-container"><img src="pictures/1.jpg" draggable="false"/></div>
-                <div className="picture-container"><img src="pictures/1.jpg" draggable="false"/></div>
             </div>
         );
     }
