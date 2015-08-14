@@ -373,7 +373,7 @@ a {
   cursor: pointer;
 }
 
-a:hover, a:active, a.selected {
+/*a:hover, a:active, */a.selected {
   color: rgb(104, 176, 232);
   text-decoration: none;
 }
@@ -426,11 +426,13 @@ body {
   float: left;
 }
 
-.header a.left-a:hover, .header a.left-a:active {
+/*
+.header a.left-a:hover/!*, .header a.left-a:active*!/ {
   color: #444;
   background-color: rgba(104, 176, 232, 0.4);
   @include box-shadow(1px 0px 8px -2px #0b1621);
 }
+*/
 
 #header-form {
   margin-left: 110px;
@@ -593,21 +595,21 @@ div.left-inner > a {
   vertical-align: middle;
 }
 
-div.left-inner > a:hover, div.left-inner > a:active, div.left-inner > a.selected {
+/*div.left-inner > a:hover, div.left-inner > a:active,*/ div.left-inner > a.selected {
   color: #444;
   background-color: rgba(104, 176, 232, 0.4);
   @include box-shadow(1px 0px 8px -2px #0b1621);
 }
 
-div.left-inner > a:hover .glyphicon-leaf, div.left-inner > a:active .glyphicon-leaf, div.left-inner > a.selected .glyphicon-leaf {
+/* div.left-inner > a:hover .glyphicon-leaf,div.left-inner > a:active .glyphicon-leaf,*/ div.left-inner > a.selected .glyphicon-leaf {
   color: #bddd22;
 }
 
-div.left-inner > a:hover .glyphicon-fire, div.left-inner > a:active .glyphicon-fire, div.left-inner > a.selected .glyphicon-fire {
+/* div.left-inner > a:hover .glyphicon-fire, div.left-inner > a:active .glyphicon-fire,*/ div.left-inner > a.selected .glyphicon-fire {
   color: #ff2d51;
 }
 
-div.left-inner > a:hover .glyphicon-heart, div.left-inner > a:active .glyphicon-heart, div.left-inner > a.selected .glyphicon-heart {
+/*div.left-inner > a:hover .glyphicon-heart,div.left-inner > a:active .glyphicon-heart,*/ div.left-inner > a.selected .glyphicon-heart {
   color: #ff2121;
 }
 
@@ -699,10 +701,10 @@ a.more-pic h4{
   margin-bottom: 5px;
 }
 
-a.more-pic:hover, a.more-pic:active {
+/*a.more-pic:hover/!*, a.more-pic:active*!/ {
   background-color: rgb(104, 176, 232);
   color: white;
-}
+}*/
 
 
 //单页部分
@@ -714,9 +716,11 @@ body.single a {
   color: #fff;
 }
 
-body.single a:hover, body.single a:active {
+/*
+body.single a:hover/!*, body.single a:active *!/{
   color: rgb(104, 176, 232);
 }
+*/
 
 body.single .header, body.single .bottom {
   background-color: rgba(255, 255, 255, 0);
@@ -741,15 +745,11 @@ body.single .page {
 
 body.single .main {
   padding-top: 0;
-  //align-items: center;
   overflow: hidden;
   @include align-items(center);
   @include display-flex(flex);
   @include flex-wrap(nowrap);
   @include justify-content(space-around);
-  //flex-wrap: nowrap;
-  //display: flex;
-  //justify-content: space-around;
   width: 100%;
   height: 100%;
 }
@@ -778,11 +778,11 @@ body.single .bottom p {
   margin: 5px auto 5px auto;
 }
 
-body.single .bottom .glyphicon-heart:hover, body.single .bottom .glyphicon-heart:active, body.single .bottom .glyphicon-heart.selected {
+/*body.single .bottom .glyphicon-heart:hover, body.single .bottom .glyphicon-heart:active,*/ body.single .bottom .glyphicon-heart.selected {
   color: #ff2121;
 }
 
-body.single .bottom span.left a:hover, body.single .bottom span.left a:active, body.single .bottom span.left a.selected {
+/*body.single .bottom span.left a:hover, body.single .bottom span.left a:active,*/ body.single .bottom span.left a.selected {
   color: #fff;
 }
 
