@@ -19,6 +19,7 @@ module.exports = (function ($, window, undefined) {
     $.Picture.prototype = {
         left_menu_animate_finish_flag: true,
         bar_animate_finish_flag: true,
+        heart_animate_finish_flag: true,
         ticking: true,
         direction: 'left',
         pfx: ["webkit", "moz", "MS", "o", ""],
