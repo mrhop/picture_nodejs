@@ -24202,6 +24202,7 @@ module.exports = React.createClass({displayName: "exports",
         cookie.set("start", '', {maxAge: -1});
         cookie.set("limitnum", '', {maxAge: -1});
         $picture.postRequest();
+        $picture.showOrHideLeftMenu();
         e.preventDefault();
     },
     handleTap: function () {
@@ -24217,14 +24218,14 @@ module.exports = React.createClass({displayName: "exports",
     render: function () {
         return (
             React.createElement("div", {className: "header"}, 
-                React.createElement(global.Hammer, {onTap: this.handleTap, component: "a", className: "left-a animated-fast"}, 
+                React.createElement(global.Hammer, {onTap: this.handleTap, options: {recognizers:{tap:{time:500,interval:100}}}, component: "a", className: "left-a animated-fast"}, 
                     React.createElement("span", {className: "glyphicon glyphicon-th-list"}), " ", 
                     React.createElement("img", {className: "top-logo", src: "images/logo.png"})
                 ), 
                     React.createElement("form", {id: "header-form", onSubmit: this.handleSubmit}, 
                         React.createElement("input", {id: "header-search", type: "text", placeholder: "输入您感兴趣的......"}), 
-                        React.createElement(global.Hammer, {onTap: this.handleTapSearch, component: "a", className: "glyphicon glyphicon-remove"}), 
-                        React.createElement(global.Hammer, {onTap: this.handleTapSearch, component: "a", className: "glyphicon glyphicon-search"})
+                        React.createElement(global.Hammer, {onTap: this.handleTapSearch, options: {recognizers:{tap:{time:500,interval:100}}}, component: "a", className: "glyphicon glyphicon-remove"}), 
+                        React.createElement(global.Hammer, {onTap: this.handleTapSearch, options: {recognizers:{tap:{time:500,interval:100}}}, component: "a", className: "glyphicon glyphicon-search"})
                     )
             )
         );
