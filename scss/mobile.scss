@@ -643,7 +643,11 @@ div.picture-container a.glyphicon-thumbs-up {
 }
 
 div.picture-container a.glyphicon-heart {
-  left: 5px;
+   left: 5px;
+ }
+
+div.picture-container a.glyphicon-heart.selected {
+  color: #ff2121;
 }
 
 div.picture-container a.glyphicon-thumbs-up span, div.picture-container a.glyphicon-heart span {
@@ -673,7 +677,7 @@ div.picture-container a.glyphicon-thumbs-up span, div.picture-container a.glyphi
 .main .bottom > div {
   padding-left: 50px;
   padding-right: 50px;
-  width: 500px;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
   background-color: #edece9;
@@ -682,11 +686,17 @@ div.picture-container a.glyphicon-thumbs-up span, div.picture-container a.glyphi
 a.more-pic {
   text-decoration: none;
   display: block;
-  margin-top: -35px;
+  margin-top: -20px;
   width: 100%;
+  min-width: 100px;
   background-color: white;
   color: #555555;
   padding: 10px 5px;
+}
+
+a.more-pic h4{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 a.more-pic:hover, a.more-pic:active {

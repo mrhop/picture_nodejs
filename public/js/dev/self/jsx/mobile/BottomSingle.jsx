@@ -2,9 +2,42 @@
  * Created by Donghui Huo on 2015/7/16.
  */
 module.exports = React.createClass({
-    handleSubmit: function () {
-        console.log("right");
-        return false;
+    handleHeart:function(event){
+        $("#errormessage").text("");
+        if(!cookie.get("username")){
+            $("#errormessage").text("请登录后操作");
+            return;
+        }
+        var data = {};
+        if($(event.target).hasClass("selected")){
+            data = {id:$(".main-img").attr("data-id"),heartFlag:false}
+            $(event.target).removeClass("selected")
+        }else{
+            data = {id:$(".main-img").attr("data-id"),heartFlag:true}
+            $(event.target).addClass("selected")
+        }
+        $.post("/heart", data, function (data) {
+            if(!data.success){
+                $("#errormessage").text("请登录后操作");
+            }
+            $picture.postRequest();
+        });
+    },
+    handleUp:function(){
+        $("#errormessage").text("");
+        if(!cookie.get("dateUp")||new Date().valueOf()-new Date(cookie.get("dateUp")).valueOf()>upInterval){
+            var data = {id:$(".main-img").attr("data-id")}
+            $.post("/up", data, function (data) {
+                if(!data.success){
+                    $picture.postRequest();
+                }else{
+                    cookie.set("dateUp",new Date(),{ maxAge:7200, secure: false,httpOnly:false});
+                }
+            });
+        }else{
+            $("#errormessage").text("请等待5分钟后操作");
+        }
+
     },
     handleBack: function () {
         $(document.body).removeClass("single");
@@ -21,9 +54,13 @@ module.exports = React.createClass({
     },
     render: function () {
         var pic = $picture.dataPic[$picture.currentPictureIndex];
+        var username = cookie.get("username");
+        var heartClass="glyphicon glyphicon-heart";
+        if(pic.heart_users.indexOf(username) > -1){
+            heartClass = "glyphicon glyphicon-heart selected"
+        }
         var date = new Date(pic.capture_date);
         var title = pic.title + " 由 " + pic.create_user + " 拍摄于 " + date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-
         return (
             <div className="bottom animated-fast">
                 <div className="desc">
@@ -33,7 +70,9 @@ module.exports = React.createClass({
                 <p className="bottom-tool">
                     <span className="left"><global.Hammer onTap={this.handleBack} component="a">返回相册</global.Hammer></span>
                     <span className="right">
-                        <a className="glyphicon glyphicon-heart"></a><a className="glyphicon glyphicon-thumbs-up"></a>
+                        <span id="errormessage"></span>&nbsp;
+                        <global.Hammer onTap={this.handleHeart} component="a" className={heartClass} />
+                        <global.Hammer onTap={this.handleUp} component="a" className="glyphicon glyphicon-thumbs-up" />
                     </span>
                 </p>
             </div>

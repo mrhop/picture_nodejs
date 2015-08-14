@@ -24113,9 +24113,42 @@ exports.$ = window.$
  * Created by Donghui Huo on 2015/7/16.
  */
 module.exports = React.createClass({displayName: "exports",
-    handleSubmit: function () {
-        console.log("right");
-        return false;
+    handleHeart:function(event){
+        $("#errormessage").text("");
+        if(!cookie.get("username")){
+            $("#errormessage").text("请登录后操作");
+            return;
+        }
+        var data = {};
+        if($(event.target).hasClass("selected")){
+            data = {id:$(".main-img").attr("data-id"),heartFlag:false}
+            $(event.target).removeClass("selected")
+        }else{
+            data = {id:$(".main-img").attr("data-id"),heartFlag:true}
+            $(event.target).addClass("selected")
+        }
+        $.post("/heart", data, function (data) {
+            if(!data.success){
+                $("#errormessage").text("请登录后操作");
+            }
+            $picture.postRequest();
+        });
+    },
+    handleUp:function(){
+        $("#errormessage").text("");
+        if(!cookie.get("dateUp")||new Date().valueOf()-new Date(cookie.get("dateUp")).valueOf()>upInterval){
+            var data = {id:$(".main-img").attr("data-id")}
+            $.post("/up", data, function (data) {
+                if(!data.success){
+                    $picture.postRequest();
+                }else{
+                    cookie.set("dateUp",new Date(),{ maxAge:7200, secure: false,httpOnly:false});
+                }
+            });
+        }else{
+            $("#errormessage").text("请等待5分钟后操作");
+        }
+
     },
     handleBack: function () {
         $(document.body).removeClass("single");
@@ -24132,9 +24165,13 @@ module.exports = React.createClass({displayName: "exports",
     },
     render: function () {
         var pic = $picture.dataPic[$picture.currentPictureIndex];
+        var username = cookie.get("username");
+        var heartClass="glyphicon glyphicon-heart";
+        if(pic.heart_users.indexOf(username) > -1){
+            heartClass = "glyphicon glyphicon-heart selected"
+        }
         var date = new Date(pic.capture_date);
         var title = pic.title + " 由 " + pic.create_user + " 拍摄于 " + date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
-
         return (
             React.createElement("div", {className: "bottom animated-fast"}, 
                 React.createElement("div", {className: "desc"}, 
@@ -24144,7 +24181,9 @@ module.exports = React.createClass({displayName: "exports",
                 React.createElement("p", {className: "bottom-tool"}, 
                     React.createElement("span", {className: "left"}, React.createElement(global.Hammer, {onTap: this.handleBack, component: "a"}, "返回相册")), 
                     React.createElement("span", {className: "right"}, 
-                        React.createElement("a", {className: "glyphicon glyphicon-heart"}), React.createElement("a", {className: "glyphicon glyphicon-thumbs-up"})
+                        React.createElement("span", {id: "errormessage"}), " ", 
+                        React.createElement(global.Hammer, {onTap: this.handleHeart, component: "a", className: heartClass}), 
+                        React.createElement(global.Hammer, {onTap: this.handleUp, component: "a", className: "glyphicon glyphicon-thumbs-up"})
                     )
                 )
             )
@@ -24401,17 +24440,19 @@ module.exports = React.createClass({displayName: "exports",
     },
     render: function () {
         var index = $picture.currentPictureIndex;
-        var imgCurrent = React.createElement("img", {className: "main-img animated-fast", draggable: "false", 
+        var imgCurrent = React.createElement("img", {className: "main-img animated-fast", "data-id": $picture.dataPic[index]._id, draggable: "false", 
                               src: $picture.dataPic[index].img_url});
         var imgPrev = null;
         var imgNext = null;
         if (index != 0) {
-            imgPrev = React.createElement("img", {className: "main-img-left animated-fast", draggable: "false", 
+            imgPrev = React.createElement("img", {className: "main-img-left animated-fast", "data-id": $picture.dataPic[index-1]._id, draggable: "false", 
                            src: $picture.dataPic[index-1].img_url});
         }
         if (index + 1 < $picture.dataPicId.length) {
-            imgNext = React.createElement("img", {className: "main-img-right animated-fast", draggable: "false", 
+            imgNext = React.createElement("img", {className: "main-img-right animated-fast", "data-id": $picture.dataPic[index+1]._id, draggable: "false", 
                            src: $picture.dataPic[index+1].img_url});
+        }else{
+            $picture.loadImage();
         }
         return (
             React.createElement(global.Hammer, {onTap: this.handleTap, component: "div", className: "main"}, 
@@ -24477,7 +24518,7 @@ module.exports = React.createClass({displayName: "exports",
         return (
             React.createElement(global.Hammer, {onTap: this.handleTap.bind(this,this.props.id), component: "div", className: "picture-container"}, 
                     React.createElement("img", {src: this.props.thumburl, draggable: "false"}), 
-                    React.createElement("a", {className: "glyphicon glyphicon-heart"}, React.createElement("span", null, this.props.hearttimes)), 
+                    React.createElement("a", {className: "glyphicon glyphicon-heart selected"}, React.createElement("span", null, this.props.hearttimes)), 
                     React.createElement("a", {className: "glyphicon glyphicon-thumbs-up"}, React.createElement("span", null, this.props.uptimes))
             )
         );
@@ -24626,6 +24667,11 @@ module.exports = (function ($, window, undefined) {
                     });
                     $(ev.target).next().addClass("slideInRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass("main-img-right").removeClass("slideInRight").addClass("main-img");
+                        $(this).attr("data-id", $picture.dataPic[$picture.currentPictureIndex]._id);
+                        var username = cookie.get("username");
+                        if ($picture.dataPic[$picture.currentPictureIndex].heart_users.indexOf(username) > -1) {
+                            $(".glyphicon-heart").addClass("selected");
+                        }
                         $picture.currentPictureIndex = $picture.currentPictureIndex + 1;
                         //此处需要将页面上的内容进行替换，当前页码数等
                         var pic = $picture.dataPic[$picture.currentPictureIndex];
@@ -24659,6 +24705,11 @@ module.exports = (function ($, window, undefined) {
                     });
                     $(ev.target).prev().addClass("slideInLeft").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass("main-img-left").removeClass("slideInLeft").addClass("main-img");
+                        $(this).attr("data-id", $picture.dataPic[$picture.currentPictureIndex]._id);
+                        var username = cookie.get("username");
+                        if ($picture.dataPic[$picture.currentPictureIndex].heart_users.indexOf(username) > -1) {
+                            $(".glyphicon-heart").addClass("selected");
+                        }
                         $picture.currentPictureIndex = $picture.currentPictureIndex - 1;
                         //此处需要将页面上的内容进行替换，当前页码数等
                         var pic = $picture.dataPic[$picture.currentPictureIndex];
@@ -24721,9 +24772,11 @@ module.exports = (function ($, window, undefined) {
             var _this = this;
             $.post(_this.urlNow, _this.getKeywords(), function (data) {
                 _this.setData(data);
-                _this.picContainer.setState({data: _this.dataPic}, function () {
-                    //_this.reload();
-                });
+                if (!$("body").hasClass("single")) {
+                    _this.picContainer.setState({data: _this.dataPic}, function () {
+                        //_this.reload();
+                    });
+                }
                 if (!cookie.get("username")) {
                     $(document.body).removeClass("login");
                 }
@@ -24769,7 +24822,7 @@ module.exports = (function ($, window, undefined) {
             $.post(this.urlNow, this.getKeywords(), function (data) {
                 _this.appendData(data);
                 _this.loaded = true;
-                if ($picture.dataPic.length > $picture.currentPictureIndex+1) {
+                if ($picture.dataPic.length > $picture.currentPictureIndex + 1) {
                     if ($("body").hasClass("single")) {
                         $("#picCount").text(($picture.currentPictureIndex + 1) + "/" + $picture.dataPic.length);
                         $('<img class="main-img-right animated-fast" draggable="false" src="' + $picture.dataPic[$picture.currentPictureIndex + 1].img_url + '">').insertAfter($("img.main-img"));

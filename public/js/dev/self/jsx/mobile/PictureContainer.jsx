@@ -19,7 +19,7 @@ module.exports = React.createClass({
         return (
             <global.Hammer onTap={this.handleTap.bind(this,this.props.id)} component="div" className="picture-container">
                     <img src={this.props.thumburl} draggable="false"/>
-                    <a className="glyphicon glyphicon-heart"><span>{this.props.hearttimes}</span></a>
+                    <a className="glyphicon glyphicon-heart selected"><span>{this.props.hearttimes}</span></a>
                     <a className="glyphicon glyphicon-thumbs-up"><span>{this.props.uptimes}</span></a>
             </global.Hammer>
         );

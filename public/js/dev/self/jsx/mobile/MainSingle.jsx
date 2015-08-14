@@ -14,17 +14,19 @@ module.exports = React.createClass({
     },
     render: function () {
         var index = $picture.currentPictureIndex;
-        var imgCurrent = <img className="main-img animated-fast" draggable="false"
+        var imgCurrent = <img className="main-img animated-fast" data-id={$picture.dataPic[index]._id} draggable="false"
                               src={$picture.dataPic[index].img_url}/>;
         var imgPrev = null;
         var imgNext = null;
         if (index != 0) {
-            imgPrev = <img className="main-img-left animated-fast" draggable="false"
+            imgPrev = <img className="main-img-left animated-fast" data-id={$picture.dataPic[index-1]._id} draggable="false"
                            src={$picture.dataPic[index-1].img_url}/>;
         }
         if (index + 1 < $picture.dataPicId.length) {
-            imgNext = <img className="main-img-right animated-fast" draggable="false"
+            imgNext = <img className="main-img-right animated-fast" data-id={$picture.dataPic[index+1]._id} draggable="false"
                            src={$picture.dataPic[index+1].img_url}/>;
+        }else{
+            $picture.loadImage();
         }
         return (
             <global.Hammer onTap={this.handleTap} component="div" className="main">

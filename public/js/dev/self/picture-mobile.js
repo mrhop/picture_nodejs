@@ -90,6 +90,11 @@ module.exports = (function ($, window, undefined) {
                     });
                     $(ev.target).next().addClass("slideInRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass("main-img-right").removeClass("slideInRight").addClass("main-img");
+                        $(this).attr("data-id", $picture.dataPic[$picture.currentPictureIndex]._id);
+                        var username = cookie.get("username");
+                        if ($picture.dataPic[$picture.currentPictureIndex].heart_users.indexOf(username) > -1) {
+                            $(".glyphicon-heart").addClass("selected");
+                        }
                         $picture.currentPictureIndex = $picture.currentPictureIndex + 1;
                         //此处需要将页面上的内容进行替换，当前页码数等
                         var pic = $picture.dataPic[$picture.currentPictureIndex];
@@ -123,6 +128,11 @@ module.exports = (function ($, window, undefined) {
                     });
                     $(ev.target).prev().addClass("slideInLeft").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass("main-img-left").removeClass("slideInLeft").addClass("main-img");
+                        $(this).attr("data-id", $picture.dataPic[$picture.currentPictureIndex]._id);
+                        var username = cookie.get("username");
+                        if ($picture.dataPic[$picture.currentPictureIndex].heart_users.indexOf(username) > -1) {
+                            $(".glyphicon-heart").addClass("selected");
+                        }
                         $picture.currentPictureIndex = $picture.currentPictureIndex - 1;
                         //此处需要将页面上的内容进行替换，当前页码数等
                         var pic = $picture.dataPic[$picture.currentPictureIndex];
@@ -185,9 +195,11 @@ module.exports = (function ($, window, undefined) {
             var _this = this;
             $.post(_this.urlNow, _this.getKeywords(), function (data) {
                 _this.setData(data);
-                _this.picContainer.setState({data: _this.dataPic}, function () {
-                    //_this.reload();
-                });
+                if (!$("body").hasClass("single")) {
+                    _this.picContainer.setState({data: _this.dataPic}, function () {
+                        //_this.reload();
+                    });
+                }
                 if (!cookie.get("username")) {
                     $(document.body).removeClass("login");
                 }
@@ -233,7 +245,7 @@ module.exports = (function ($, window, undefined) {
             $.post(this.urlNow, this.getKeywords(), function (data) {
                 _this.appendData(data);
                 _this.loaded = true;
-                if ($picture.dataPic.length > $picture.currentPictureIndex+1) {
+                if ($picture.dataPic.length > $picture.currentPictureIndex + 1) {
                     if ($("body").hasClass("single")) {
                         $("#picCount").text(($picture.currentPictureIndex + 1) + "/" + $picture.dataPic.length);
                         $('<img class="main-img-right animated-fast" draggable="false" src="' + $picture.dataPic[$picture.currentPictureIndex + 1].img_url + '">').insertAfter($("img.main-img"));
